@@ -526,7 +526,7 @@ tbody td{padding:11px 14px;font-size:.86rem;}
     <div class="adm-hdr">
       <div><h2>Library Visitor Dashboard</h2><p id="a-date"></p></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-outline btn-sm" onclick="loadFromSheet()" id="refresh-btn">🔄 Refresh</button>
+        <button class="btn btn-outline btn-sm" onclick="loadFromSheet(false)" id="refresh-btn">🔄 Refresh</button>
         <button class="btn btn-gold btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
       </div>
     </div>
@@ -653,7 +653,7 @@ function goToLogin(){
   updateLoginStats();
   showScreen('login-screen');
 }
-function logout(){ gUser=null; showScreen('splash-screen'); }
+function logout(){ gUser=null; stopAutoRefresh(); showScreen('splash-screen'); }
 function goLogAnother(){ if(gUser){ openRegModal(); }else{ showScreen('login-screen'); switchTab('walkin'); } }
 
 // ═══════════════════════════════════════════════════
@@ -666,14 +666,25 @@ function switchTab(tab){
 }
 
 // ═══════════════════════════════════════════════════
-//  LIVE STATS on login panel
+//  LIVE STATS on login panel — fetches from Sheet
 // ═══════════════════════════════════════════════════
-function updateLoginStats(){
-  const all = sheetReady() ? allRecords : getLocal();
-  const now = new Date();
-  const today = all.filter(r=>new Date(r.timestamp).toDateString()===now.toDateString());
-  document.getElementById('stat-today-count').textContent = today.length;
-  document.getElementById('stat-total-count').textContent = all.length;
+async function updateLoginStats(){
+  // Show local counts instantly
+  const local = getLocal();
+  const now   = new Date();
+  document.getElementById('stat-today-count').textContent = local.filter(r=>new Date(r.timestamp).toDateString()===now.toDateString()).length;
+  document.getElementById('stat-total-count').textContent = local.length;
+
+  // Then fetch real live counts from Sheet (works on all devices)
+  if(!sheetReady()) return;
+  try{
+    const res  = await fetch(SHEET_URL + '?action=get');
+    const data = await res.json();
+    const all  = data.records || [];
+    document.getElementById('stat-today-count').textContent = all.filter(r=>new Date(r.timestamp).toDateString()===now.toDateString()).length;
+    document.getElementById('stat-total-count').textContent = all.length;
+    allRecords = all; // cache for dashboard
+  }catch(e){ /* keep local counts */ }
 }
 
 // ═══════════════════════════════════════════════════
@@ -713,24 +724,36 @@ async function sendToSheet(record){
   }
 }
 
-async function loadFromSheet(){
+let autoRefreshTimer = null;
+
+async function loadFromSheet(silent){
   if(!sheetReady()){ allRecords=getLocal(); renderDashboard(); return; }
-  showLoading('Loading records…');
+  if(!silent) showLoading('Loading records…');
   try{
-    const res = await fetch(SHEET_URL+'?action=get');
+    const res = await fetch(SHEET_URL+'?action=get&t='+Date.now()); // cache-bust
     const data = await res.json();
     allRecords = data.records || [];
-    // also merge any offline local records not yet synced
+    // Sync any offline local records
     const local = getLocal();
     const sheetIds = new Set(allRecords.map(r=>r.id));
     const unsynced = local.filter(r=>!sheetIds.has(r.id));
     if(unsynced.length){ for(const r of unsynced) await sendToSheet(r); saveLocal([]); }
+    document.getElementById('setup-warn').style.display='none';
   }catch(e){
-    allRecords = getLocal();
+    if(allRecords.length===0) allRecords = getLocal();
     document.getElementById('setup-warn').style.display='flex';
   }
-  hideLoading();
+  if(!silent) hideLoading();
   renderDashboard();
+}
+
+function startAutoRefresh(){
+  stopAutoRefresh();
+  autoRefreshTimer = setInterval(()=>loadFromSheet(true), 30000); // every 30s
+}
+
+function stopAutoRefresh(){
+  if(autoRefreshTimer){ clearInterval(autoRefreshTimer); autoRefreshTimer=null; }
 }
 
 // ═══════════════════════════════════════════════════
@@ -784,6 +807,7 @@ function goAdmin(){
   if(!sheetReady()) document.getElementById('setup-warn').style.display='flex';
   else document.getElementById('setup-warn').style.display='none';
   loadFromSheet();
+  startAutoRefresh();
   showScreen('admin-screen');
 }
 
