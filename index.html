@@ -678,21 +678,37 @@ function updateLoginStats(){
 
 // ═══════════════════════════════════════════════════
 //  GOOGLE SHEETS API
+//  Uses GET with query params — avoids CORS preflight
 // ═══════════════════════════════════════════════════
 async function sendToSheet(record){
-  if(!sheetReady()){ saveLocal([...getLocal(), record]); allRecords=[...allRecords, record]; return true; }
+  // Always add to local state immediately so UI updates
+  allRecords = [...allRecords, record];
+
+  if(!sheetReady()){
+    saveLocal([...getLocal(), record]);
+    return true;
+  }
+
   try{
-    const res = await fetch(SHEET_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({action:'add', record})
+    const params = new URLSearchParams({
+      action:    'add',
+      id:        record.id        || '',
+      timestamp: record.timestamp || '',
+      email:     record.email     || '',
+      name:      record.name      || '',
+      contact:   record.contact   || '',
+      sid:       record.sid       || '',
+      role:      record.role      || '',
+      course:    record.course    || '',
+      dept:      record.dept      || '',
+      purpose:   record.purpose   || ''
     });
+    const res  = await fetch(SHEET_URL + '?' + params.toString());
     const data = await res.json();
     return data.success;
   }catch(e){
-    // fallback to local if network fails
+    // Network failed — save locally and sync next time admin loads
     saveLocal([...getLocal(), record]);
-    allRecords=[...allRecords, record];
     return true;
   }
 }
@@ -766,6 +782,7 @@ function goAdmin(){
   if(!gUser.picture) aAv.textContent=initials;
   document.getElementById('a-date').textContent='Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   if(!sheetReady()) document.getElementById('setup-warn').style.display='flex';
+  else document.getElementById('setup-warn').style.display='none';
   loadFromSheet();
   showScreen('admin-screen');
 }
