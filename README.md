@@ -38,19 +38,8 @@ All visitor records are saved to **Google Sheets** and shared across every devic
 | Admin | `LibrarianAcc@neu.edu.ph` | Full dashboard — stats, records, filters, export |
 | NEU Member | Any `@neu.edu.ph` account | Visitor log form + personal visit summary |
 | Walk-in Visitor | No account needed | Enter name + purpose directly |
-
-> Admins are detected **automatically** on Google Sign-In. No password needed.  
+  
 > When an admin signs in, they choose: **Open Dashboard** or **Log a Visit as Regular User**.
-
----
-
-## ☁️ Google Sheets Database
-
-All visitor records are stored in:  
-**[NEU Library Visitor Log Sheet](https://docs.google.com/spreadsheets/d/1hUnk0kQcRt7-5KPPNpvNg8x5hJF5ZfieuAi063IxJO4/edit)**
-
-Every log from every device automatically appears in this shared sheet.  
-The admin dashboard reads directly from this sheet in real time.
 
 ---
 
@@ -61,16 +50,6 @@ The admin dashboard reads directly from this sheet in real time.
 - Google Apps Script (free serverless API)
 - Google Sheets (shared database)
 - GitHub Pages (hosting)
-
----
-
-## 📁 Project Structure
-
-```
-neu-library-log/
-├── index.html   ← entire application (HTML + CSS + JS in one file)
-└── README.md    ← this file
-```
 
 ---
 
