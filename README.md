@@ -5,7 +5,7 @@ A web-based library visitor logging system for New Era University.
 ## Live Application
 
 Visit the live app here:
-https://YOUR-USERNAME.github.io/neu-library-log/
+
 
 ## Admin Login
 - Email: jcesperanza@neu.edu.ph
