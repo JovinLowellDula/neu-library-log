@@ -604,6 +604,28 @@ tbody td{padding:11px 14px;font-size:.86rem;}
   </div>
 </div>
 
+<!-- ADMIN ROLE CHOICE MODAL -->
+<div class="ov" id="role-modal">
+  <div class="modal" style="max-width:420px;text-align:center">
+    <div style="font-size:2.2rem;margin-bottom:.8rem">👋</div>
+    <h2 style="margin-bottom:.3rem" id="role-modal-name">Welcome!</h2>
+    <p style="color:var(--gray);font-size:.85rem;margin-bottom:1.6rem;line-height:1.6">
+      Your account has <strong>admin access</strong>.<br>How would you like to continue today?
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn btn-gold" onclick="goAdmin()">
+        🛡️ Open Admin Dashboard
+      </button>
+      <button class="btn btn-outline" onclick="goRegularUser()">
+        🎓 Log a Visit as Regular User
+      </button>
+    </div>
+    <p style="font-size:.75rem;color:var(--gray);margin-top:1rem">
+      You can switch anytime by signing out and back in.
+    </p>
+  </div>
+</div>
+
 <!-- SUCCESS MODAL -->
 <div class="ov" id="suc-modal">
   <div class="modal" style="max-width:400px">
@@ -665,6 +687,7 @@ tbody td{padding:11px 14px;font-size:.86rem;}
       </div>
       <div class="tb-av" id="a-av">AD</div>
       <span class="adm-badge">Admin</span>
+      <button class="sign-out" style="background:rgba(200,168,75,0.15);border-color:rgba(200,168,75,0.4)" onclick="openRegModal();showModal('reg-modal')">📝 Log a Visit</button>
       <button class="sign-out" onclick="logout()">Sign Out</button>
     </div>
   </div>
@@ -881,19 +904,32 @@ function onUser(user){
   }
   gUser=user;
   if(ADMIN_EMAILS.includes(email)){
-    // → Admin dashboard
-    const initials=email.split('@')[0].split('.').map(w=>w[0].toUpperCase()).join('').slice(0,2);
-    document.getElementById('a-name').textContent=user.name||email;
-    const aAv=document.getElementById('a-av');
-    aAv.innerHTML=user.picture?`<img src="${user.picture}" alt="">`:'';
-    if(!user.picture) aAv.textContent=initials;
-    document.getElementById('a-date').textContent=
-      'Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    renderDashboard();
-    showScreen('admin-screen');
+    // Show choice: admin dashboard OR regular user
+    const firstName=(user.name||email).split(' ')[0];
+    document.getElementById('role-modal-name').textContent='Welcome, '+firstName+'!';
+    showModal('role-modal');
   } else {
     openRegModal();
   }
+}
+
+function goAdmin(){
+  closeModal('role-modal');
+  const email=(gUser.email||'').toLowerCase();
+  const initials=email.split('@')[0].split('.').map(w=>w[0].toUpperCase()).join('').slice(0,2);
+  document.getElementById('a-name').textContent=gUser.name||gUser.email;
+  const aAv=document.getElementById('a-av');
+  aAv.innerHTML=gUser.picture?`<img src="${gUser.picture}" alt="">`:'';
+  if(!gUser.picture) aAv.textContent=initials;
+  document.getElementById('a-date').textContent=
+    'Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  renderDashboard();
+  showScreen('admin-screen');
+}
+
+function goRegularUser(){
+  closeModal('role-modal');
+  openRegModal();
 }
 
 // ─────────────────────────────────────────────────────
