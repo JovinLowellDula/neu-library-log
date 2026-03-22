@@ -30,7 +30,7 @@ Built with pure HTML, CSS, and JavaScript — no backend required. Hosted on Git
 
 | Role | Email | Access |
 |------|-------|--------|
-| Admin | `jcesperanza@neu.edu.ph` | Full dashboard — stats, records, filters, export |
+| Admin | `Teachers@neu.edu.ph` | Full dashboard — stats, records, filters, export |
 | Regular User | Any `@neu.edu.ph` account | Visitor log form + personal visit summary |
 
 > Admins are detected **automatically** when signing in with Google. No separate login or password needed.
