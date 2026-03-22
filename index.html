@@ -9,281 +9,222 @@
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
   :root {
-    --neu-navy: #1a2744;
-    --neu-gold: #c8a84b;
-    --neu-cream: #fdf8f0;
-    --neu-gray: #6b7280;
-    --neu-light: #f3f4f6;
-    --neu-border: #e5e7eb;
-    --neu-red: #c0392b;
-    --neu-green: #27ae60;
+    --navy: #1a2744;
+    --gold: #c8a84b;
+    --cream: #fdf8f0;
+    --gray: #6b7280;
+    --light: #f3f4f6;
+    --border: #e5e7eb;
+    --red: #c0392b;
+    --green: #27ae60;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
     --shadow-md: 0 4px 16px rgba(26,39,68,0.12);
     --shadow-lg: 0 8px 32px rgba(26,39,68,0.18);
-    --radius: 12px;
+    --r: 12px;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',Georgia,sans-serif; background:var(--navy); min-height:100vh; color:#1a1a1a; }
 
-  body {
-    font-family: 'DM Sans', Georgia, serif;
-    background: var(--neu-navy);
-    min-height: 100vh;
-    color: #1a1a1a;
-  }
+  .screen { display:none; min-height:100vh; }
+  .screen.active { display:flex; }
 
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: flex; }
-
+  /* ── WELCOME ── */
   #welcome-screen {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1a2744 0%, #2c3e6e 50%, #1a2744 100%);
-    position: relative;
-    overflow: hidden;
-    padding: 2rem;
+    flex-direction:column; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#1a2744 0%,#2c3e6e 50%,#1a2744 100%);
+    position:relative; overflow:hidden; padding:2rem;
   }
-
-  #welcome-screen::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,168,75,0.15);
-    top: -200px; right: -200px;
-    pointer-events: none;
-  }
-  #welcome-screen::after {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,168,75,0.1);
-    bottom: -100px; left: -100px;
-    pointer-events: none;
-  }
+  #welcome-screen::before { content:''; position:absolute; width:600px; height:600px; border-radius:50%; border:1px solid rgba(200,168,75,.15); top:-200px; right:-200px; pointer-events:none; }
+  #welcome-screen::after  { content:''; position:absolute; width:400px; height:400px; border-radius:50%; border:1px solid rgba(200,168,75,.10); bottom:-100px; left:-100px; pointer-events:none; }
 
   .welcome-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.8rem 3rem;
-    max-width: 460px;
-    width: 100%;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    z-index: 1;
-    animation: fadeUp 0.6s ease;
+    background:white; border-radius:20px; padding:2.8rem 3rem;
+    max-width:460px; width:100%; box-shadow:var(--shadow-lg);
+    position:relative; z-index:1; animation:fadeUp .6s ease;
   }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .neu-logo { display:flex; align-items:center; gap:12px; margin-bottom:1.8rem; }
+  .neu-logo-icon { width:50px; height:50px; background:var(--navy); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .neu-logo-text h1 { font-family:'Playfair Display',Georgia,serif; font-size:1rem; color:var(--navy); line-height:1.2; }
+  .neu-logo-text span { font-size:.72rem; color:var(--gray); font-weight:500; letter-spacing:.05em; text-transform:uppercase; }
 
-  .neu-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 1.8rem; }
-  .neu-logo-icon {
-    width: 50px; height: 50px;
-    background: var(--neu-navy);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
-  }
-  .neu-logo-text h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: var(--neu-navy); line-height: 1.2; }
-  .neu-logo-text span { font-size: 0.72rem; color: var(--neu-gray); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+  .welcome-title { font-family:'Playfair Display',Georgia,serif; font-size:1.65rem; color:var(--navy); margin-bottom:.4rem; line-height:1.25; }
+  .welcome-sub   { color:var(--gray); font-size:.875rem; margin-bottom:1.8rem; line-height:1.5; }
 
-  .welcome-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.65rem; color: var(--neu-navy); margin-bottom: 0.4rem; line-height: 1.25; }
-  .welcome-sub { color: var(--neu-gray); font-size: 0.875rem; margin-bottom: 1.8rem; line-height: 1.5; }
+  hr.div { border:none; border-top:1px solid var(--border); margin:1.4rem 0; }
+  .sec-label { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); text-align:center; margin-bottom:.4rem; }
 
-  .divider { border: none; border-top: 1px solid var(--neu-border); margin: 1.4rem 0; }
-  .divider-label {
-    display: flex; align-items: center; gap: 10px;
-    margin: 1rem 0; color: var(--neu-gray);
-    font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
-  }
-  .divider-label::before, .divider-label::after { content: ''; flex: 1; height: 1px; background: var(--neu-border); }
+  .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:13px 20px; border-radius:var(--r); font-family:'DM Sans',sans-serif; font-size:.92rem; font-weight:600; cursor:pointer; border:none; transition:all .2s ease; }
+  .btn-primary { background:var(--navy); color:white; }
+  .btn-primary:hover { background:#243360; transform:translateY(-1px); box-shadow:var(--shadow-md); }
+  .btn-gold    { background:var(--gold); color:var(--navy); }
+  .btn-gold:hover { background:#b8943e; transform:translateY(-1px); box-shadow:var(--shadow-md); }
+  .btn-outline { background:transparent; color:var(--navy); border:2px solid var(--border); }
+  .btn-outline:hover { border-color:var(--navy); background:var(--light); }
+  .btn-sm { padding:8px 16px; font-size:.83rem; width:auto; }
 
-  .btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; padding: 13px 20px; border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 600;
-    cursor: pointer; border: none; transition: all 0.2s ease; text-decoration: none;
-  }
-  .btn-primary { background: var(--neu-navy); color: white; }
-  .btn-primary:hover { background: #243360; transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .btn-gold { background: var(--neu-gold); color: var(--neu-navy); }
-  .btn-gold:hover { background: #b8943e; transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .btn-outline { background: transparent; color: var(--neu-navy); border: 2px solid var(--neu-border); }
-  .btn-outline:hover { border-color: var(--neu-navy); background: var(--neu-light); }
-  .btn-danger { background: var(--neu-red); color: white; }
-  .btn-sm { padding: 8px 16px; font-size: 0.83rem; width: auto; }
+  .btn-google { background:white; color:#3c4043; border:2px solid #dadce0; font-size:.92rem; font-weight:600; }
+  .btn-google:hover { background:#f8f9fa; border-color:#aaa; }
+  .g-icon { width:20px; height:20px; flex-shrink:0; }
 
-  .login-options { display: flex; flex-direction: column; gap: 10px; }
+  /* ── FORMS ── */
+  .form-group { margin-bottom:1.1rem; }
+  label { display:block; font-size:.82rem; font-weight:700; color:var(--navy); margin-bottom:5px; }
+  input, select { width:100%; padding:11px 13px; border:2px solid var(--border); border-radius:var(--r); font-family:'DM Sans',sans-serif; font-size:.88rem; color:#1a1a1a; background:white; transition:border-color .2s; appearance:none; }
+  input:focus, select:focus { outline:none; border-color:var(--gold); }
+  .hint  { font-size:.76rem; color:var(--gray); margin-top:4px; }
+  .emsg  { font-size:.79rem; color:var(--red); margin-top:5px; display:none; font-weight:500; }
 
-  .btn-google {
-    background: white; color: #3c4043;
-    border: 2px solid #dadce0;
-    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 600;
-  }
-  .btn-google:hover { background: #f8f9fa; border-color: #aaa; box-shadow: var(--shadow-sm); }
-  .btn-google .g-icon { width: 20px; height: 20px; flex-shrink: 0; }
+  .type-sel { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:1.1rem; }
+  .type-btn { padding:14px 6px; border:2px solid var(--border); border-radius:var(--r); background:white; cursor:pointer; text-align:center; transition:all .2s; font-family:'DM Sans',sans-serif; }
+  .type-btn .ti { font-size:1.6rem; display:block; margin-bottom:4px; }
+  .type-btn .tn { font-size:.78rem; font-weight:700; color:var(--navy); }
+  .type-btn.sel { border-color:var(--gold); background:#fdf8f0; }
 
-  .form-group { margin-bottom: 1.1rem; }
-  label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--neu-navy); margin-bottom: 5px; letter-spacing: 0.02em; }
-  input, select {
-    width: 100%; padding: 11px 13px; border: 2px solid var(--neu-border); border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: #1a1a1a;
-    background: white; transition: border-color 0.2s; appearance: none;
-  }
-  input:focus, select:focus { outline: none; border-color: var(--neu-gold); }
-  .input-hint { font-size: 0.76rem; color: var(--neu-gray); margin-top: 4px; }
-  .error-msg { font-size: 0.79rem; color: var(--neu-red); margin-top: 5px; display: none; font-weight: 500; }
+  .purp-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-bottom:1.1rem; }
+  .purp-chip { padding:9px 12px; border:2px solid var(--border); border-radius:8px; background:white; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:.83rem; font-weight:500; color:var(--navy); text-align:left; transition:all .2s; display:flex; align-items:center; gap:7px; }
+  .purp-chip:hover { border-color:var(--gold); background:#fdf8f0; }
+  .purp-chip.sel { border-color:var(--gold); background:var(--gold); color:var(--navy); font-weight:700; }
 
-  .type-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.1rem; }
-  .type-btn { padding: 14px 6px; border: 2px solid var(--neu-border); border-radius: var(--radius); background: white; cursor: pointer; text-align: center; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-  .type-btn .type-icon { font-size: 1.6rem; display: block; margin-bottom: 4px; }
-  .type-btn .type-name { font-size: 0.78rem; font-weight: 700; color: var(--neu-navy); }
-  .type-btn.selected { border-color: var(--neu-gold); background: #fdf8f0; }
+  /* ── TOPBAR ── */
+  .topbar { background:var(--navy); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:62px; box-shadow:var(--shadow-md); position:sticky; top:0; z-index:100; flex-shrink:0; }
+  .tb-brand { display:flex; align-items:center; gap:10px; color:white; }
+  .tb-icon  { font-size:1.3rem; background:var(--gold); width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+  .tb-name  { font-family:'Playfair Display',Georgia,serif; font-size:.98rem; }
+  .tb-sub   { font-size:.68rem; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.08em; }
+  .tb-right { display:flex; align-items:center; gap:10px; color:white; }
+  .tb-av    { width:34px; height:34px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.85rem; color:var(--navy); overflow:hidden; flex-shrink:0; }
+  .tb-av img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+  .tb-uname { font-size:.82rem; font-weight:600; }
+  .tb-role  { font-size:.68rem; color:rgba(255,255,255,.5); }
+  .sign-out { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:white; padding:5px 13px; border-radius:8px; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:.78rem; transition:background .2s; }
+  .sign-out:hover { background:rgba(255,255,255,.22); }
+  .adm-badge { background:var(--gold); color:var(--navy); font-size:.65rem; font-weight:800; padding:2px 8px; border-radius:10px; text-transform:uppercase; letter-spacing:.06em; }
 
-  .purpose-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 1.1rem; }
-  .purpose-chip {
-    padding: 9px 12px; border: 2px solid var(--neu-border); border-radius: 8px;
-    background: white; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    font-size: 0.83rem; font-weight: 500; color: var(--neu-navy);
-    text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 7px;
-  }
-  .purpose-chip:hover { border-color: var(--neu-gold); background: #fdf8f0; }
-  .purpose-chip.selected { border-color: var(--neu-gold); background: var(--neu-gold); color: var(--neu-navy); font-weight: 700; }
+  /* ── USER SCREEN ── */
+  #user-screen, #admin-screen { flex-direction:column; background:var(--cream); }
+  .user-wrap { flex:1; display:flex; align-items:center; justify-content:center; padding:2rem; }
+  .user-card { background:white; border-radius:20px; padding:2.2rem; max-width:500px; width:100%; box-shadow:var(--shadow-md); animation:fadeUp .4s ease; }
 
-  .topbar {
-    background: var(--neu-navy); padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 62px; box-shadow: var(--shadow-md); position: sticky; top: 0; z-index: 100; flex-shrink: 0;
-  }
-  .topbar-brand { display: flex; align-items: center; gap: 10px; color: white; }
-  .brand-icon { font-size: 1.3rem; background: var(--neu-gold); width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-  .brand-name { font-family: 'Playfair Display', Georgia, serif; font-size: 0.98rem; }
-  .brand-sub { font-size: 0.68rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
-  .topbar-user { display: flex; align-items: center; gap: 10px; color: white; }
-  .user-avatar {
-    width: 34px; height: 34px; border-radius: 50%; background: var(--neu-gold);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.85rem; color: var(--neu-navy); overflow: hidden; flex-shrink: 0;
-  }
-  .user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .user-info .uname { font-size: 0.82rem; font-weight: 600; }
-  .user-info .urole { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
-  .logout-btn {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    color: white; padding: 5px 13px; border-radius: 8px; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; transition: background 0.2s;
-  }
-  .logout-btn:hover { background: rgba(255,255,255,0.22); }
+  .banner { background:linear-gradient(135deg,var(--navy),#2c3e6e); color:white; border-radius:14px; padding:1.4rem; margin-bottom:1.4rem; text-align:center; }
+  .banner-h { font-family:'Playfair Display',Georgia,serif; font-size:1.35rem; margin-bottom:4px; }
+  .banner-t { font-size:.8rem; color:rgba(255,255,255,.6); }
+  .badge { display:inline-block; background:var(--gold); color:var(--navy); padding:3px 11px; border-radius:20px; font-size:.76rem; font-weight:800; margin-top:8px; text-transform:uppercase; letter-spacing:.06em; }
 
-  #user-screen, #admin-screen { flex-direction: column; background: var(--neu-cream); }
-  .user-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-  .user-card { background: white; border-radius: 20px; padding: 2.2rem; max-width: 500px; width: 100%; box-shadow: var(--shadow-md); animation: fadeUp 0.4s ease; }
+  .sec-h { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; color:var(--navy); margin-bottom:.8rem; }
+  .det   { background:var(--light); border-radius:10px; padding:.9rem; margin-bottom:1.2rem; }
+  .det-r { display:flex; justify-content:space-between; font-size:.83rem; padding:4px 0; border-bottom:1px solid var(--border); }
+  .det-r:last-child { border-bottom:none; }
+  .det-k { color:var(--gray); font-weight:500; }
+  .det-v { font-weight:700; color:var(--navy); text-align:right; max-width:60%; word-break:break-word; }
 
-  .success-banner { background: linear-gradient(135deg, var(--neu-navy), #2c3e6e); color: white; border-radius: 14px; padding: 1.4rem; margin-bottom: 1.4rem; text-align: center; }
-  .success-banner .welcome-greeting { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; margin-bottom: 4px; }
-  .success-banner .welcome-time { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
-  .gold-badge { display: inline-block; background: var(--neu-gold); color: var(--neu-navy); padding: 3px 11px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; color: var(--neu-navy); margin-bottom: 0.8rem; }
+  /* ── ADMIN SCREEN ── */
+  .adm-wrap { flex:1; padding:1.8rem; max-width:1200px; width:100%; margin:0 auto; }
+  .adm-hdr  { margin-bottom:1.4rem; display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .adm-hdr h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.55rem; color:var(--navy); }
+  .adm-hdr p  { color:var(--gray); font-size:.85rem; }
 
-  .log-detail { background: var(--neu-light); border-radius: 10px; padding: 0.9rem; margin-bottom: 1.2rem; }
-  .log-detail-row { display: flex; justify-content: space-between; font-size: 0.83rem; padding: 4px 0; border-bottom: 1px solid var(--neu-border); }
-  .log-detail-row:last-child { border-bottom: none; }
-  .log-detail-row .key { color: var(--neu-gray); font-weight: 500; }
-  .log-detail-row .val { font-weight: 700; color: var(--neu-navy); text-align: right; max-width: 60%; word-break: break-word; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1rem; margin-bottom:1.4rem; }
+  .stat  { background:white; border-radius:var(--r); padding:1.3rem; box-shadow:var(--shadow-sm); border-left:4px solid var(--gold); transition:transform .2s,box-shadow .2s; }
+  .stat:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .stat-l { font-size:.75rem; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; font-weight:700; margin-bottom:5px; }
+  .stat-v { font-family:'Playfair Display',Georgia,serif; font-size:2rem; color:var(--navy); line-height:1; margin-bottom:3px; }
+  .stat-s { font-size:.75rem; color:var(--gray); }
+  .stat.nv { border-left-color:var(--navy); }
+  .stat.gn { border-left-color:var(--green); }
+  .stat.rd { border-left-color:var(--red); }
 
-  .admin-content { flex: 1; padding: 1.8rem; max-width: 1200px; width: 100%; margin: 0 auto; }
-  .admin-header { margin-bottom: 1.4rem; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-  .admin-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; color: var(--neu-navy); }
-  .admin-header p { color: var(--neu-gray); font-size: 0.85rem; }
+  .ptabs { display:flex; gap:6px; margin-bottom:1.3rem; flex-wrap:wrap; }
+  .ptab  { padding:7px 16px; border:2px solid var(--border); border-radius:30px; background:white; font-family:'DM Sans',sans-serif; font-size:.83rem; font-weight:700; color:var(--gray); cursor:pointer; transition:all .2s; }
+  .ptab.active { background:var(--navy); border-color:var(--navy); color:white; }
 
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
-  .stat-card { background: white; border-radius: var(--radius); padding: 1.3rem; box-shadow: var(--shadow-sm); border-left: 4px solid var(--neu-gold); transition: transform 0.2s, box-shadow 0.2s; }
-  .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .stat-card .stat-label { font-size: 0.75rem; color: var(--neu-gray); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 5px; }
-  .stat-card .stat-value { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--neu-navy); line-height: 1; margin-bottom: 3px; }
-  .stat-card .stat-sub { font-size: 0.75rem; color: var(--neu-gray); }
-  .stat-card.navy { border-left-color: var(--neu-navy); }
-  .stat-card.green { border-left-color: var(--neu-green); }
-  .stat-card.red { border-left-color: var(--neu-red); }
+  .drange { display:none; gap:10px; align-items:flex-end; flex-wrap:wrap; margin-bottom:1.3rem; }
+  .drange.show { display:flex; }
 
-  .period-tabs { display: flex; gap: 6px; margin-bottom: 1.3rem; flex-wrap: wrap; }
-  .period-tab { padding: 7px 16px; border: 2px solid var(--neu-border); border-radius: 30px; background: white; font-family: 'DM Sans', sans-serif; font-size: 0.83rem; font-weight: 700; color: var(--neu-gray); cursor: pointer; transition: all 0.2s; }
-  .period-tab.active { background: var(--neu-navy); border-color: var(--neu-navy); color: white; }
-  .date-range-row { display: none; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1.3rem; }
-  .date-range-row.visible { display: flex; }
+  .filters { background:white; border-radius:var(--r); padding:1.1rem 1.3rem; box-shadow:var(--shadow-sm); margin-bottom:1.3rem; display:flex; align-items:flex-end; gap:1rem; flex-wrap:wrap; }
+  .fg { flex:1; min-width:130px; }
+  .fg label { font-size:.76rem; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px; }
+  .fg select, .fg input { padding:8px 11px; font-size:.83rem; border:1.5px solid var(--border); }
 
-  .filters-row { background: white; border-radius: var(--radius); padding: 1.1rem 1.3rem; box-shadow: var(--shadow-sm); margin-bottom: 1.3rem; display: flex; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
-  .filter-group { flex: 1; min-width: 130px; }
-  .filter-group label { font-size: 0.76rem; font-weight: 700; color: var(--neu-gray); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
-  .filter-group select, .filter-group input { padding: 8px 11px; font-size: 0.83rem; border: 1.5px solid var(--neu-border); }
+  .srch { background:white; border-radius:var(--r); padding:1.1rem 1.3rem; box-shadow:var(--shadow-sm); margin-bottom:1.3rem; display:flex; gap:10px; align-items:center; }
+  .srch-w { flex:1; position:relative; }
+  .srch-w input { padding-left:38px; border:1.5px solid var(--border); }
+  .srch-ic { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--gray); pointer-events:none; }
 
-  .search-wrap { background: white; border-radius: var(--radius); padding: 1.1rem 1.3rem; box-shadow: var(--shadow-sm); margin-bottom: 1.3rem; display: flex; gap: 10px; align-items: center; }
-  .search-input-wrap { flex: 1; position: relative; }
-  .search-input-wrap input { padding-left: 38px; border: 1.5px solid var(--neu-border); }
-  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--neu-gray); font-size: 0.95rem; pointer-events: none; }
+  .purp-bd { background:white; border-radius:var(--r); padding:1.3rem; box-shadow:var(--shadow-sm); margin-bottom:1.3rem; }
+  .purp-bd h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; color:var(--navy); margin-bottom:.9rem; }
+  .pb-row { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+  .pb-lbl { width:140px; font-size:.8rem; font-weight:700; color:var(--navy); flex-shrink:0; }
+  .pb-trk { flex:1; height:9px; background:var(--light); border-radius:5px; overflow:hidden; }
+  .pb-fil { height:100%; background:linear-gradient(90deg,var(--navy),var(--gold)); border-radius:5px; transition:width .6s ease; }
+  .pb-cnt { font-size:.8rem; font-weight:800; color:var(--navy); width:28px; text-align:right; }
 
-  .purpose-breakdown { background: white; border-radius: var(--radius); padding: 1.3rem; box-shadow: var(--shadow-sm); margin-bottom: 1.3rem; }
-  .purpose-breakdown h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; color: var(--neu-navy); margin-bottom: 0.9rem; }
-  .purpose-bars { display: flex; flex-direction: column; gap: 9px; }
-  .purpose-bar-row { display: flex; align-items: center; gap: 10px; }
-  .purpose-bar-label { width: 130px; font-size: 0.8rem; font-weight: 700; color: var(--neu-navy); flex-shrink: 0; }
-  .purpose-bar-track { flex: 1; height: 9px; background: var(--neu-light); border-radius: 5px; overflow: hidden; }
-  .purpose-bar-fill { height: 100%; background: linear-gradient(90deg, var(--neu-navy), var(--neu-gold)); border-radius: 5px; transition: width 0.6s ease; }
-  .purpose-bar-count { font-size: 0.8rem; font-weight: 800; color: var(--neu-navy); width: 28px; text-align: right; }
+  .tbl-wrap { background:white; border-radius:var(--r); box-shadow:var(--shadow-sm); overflow:hidden; }
+  .tbl-hd   { padding:.9rem 1.3rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .tbl-hd h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; color:var(--navy); }
+  .rec-cnt { font-size:.8rem; color:var(--gray); background:var(--light); padding:3px 11px; border-radius:20px; font-weight:700; }
+  .tbl-sc { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; }
+  thead th { background:var(--light); padding:9px 14px; text-align:left; font-size:.76rem; font-weight:800; color:var(--gray); text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+  tbody tr { border-bottom:1px solid var(--border); transition:background .15s; }
+  tbody tr:last-child { border-bottom:none; }
+  tbody tr:hover { background:#fafafa; }
+  tbody td { padding:11px 14px; font-size:.86rem; }
+  .p-tag { display:inline-block; padding:3px 9px; border-radius:20px; font-size:.73rem; font-weight:700; background:var(--light); color:var(--navy); }
+  .r-tag { display:inline-block; padding:3px 9px; border-radius:20px; font-size:.73rem; font-weight:700; }
+  .rs  { background:#dbeafe; color:#1e40af; }
+  .rf  { background:#d1fae5; color:#065f46; }
+  .rv  { background:#fef3c7; color:#92400e; }
 
-  .table-wrap { background: white; border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; }
-  .table-head { padding: 0.9rem 1.3rem; border-bottom: 1px solid var(--neu-border); display: flex; align-items: center; justify-content: space-between; }
-  .table-head h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; color: var(--neu-navy); }
-  .record-count { font-size: 0.8rem; color: var(--neu-gray); background: var(--neu-light); padding: 3px 11px; border-radius: 20px; font-weight: 700; }
-  .table-scroll { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; }
-  thead th { background: var(--neu-light); padding: 9px 14px; text-align: left; font-size: 0.76rem; font-weight: 800; color: var(--neu-gray); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
-  tbody tr { border-bottom: 1px solid var(--neu-border); transition: background 0.15s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #fafafa; }
-  tbody td { padding: 11px 14px; font-size: 0.86rem; color: #1a1a1a; }
-  .purpose-tag { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; background: var(--neu-light); color: var(--neu-navy); }
-  .role-tag { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
-  .role-student { background: #dbeafe; color: #1e40af; }
-  .role-faculty { background: #d1fae5; color: #065f46; }
-  .role-visitor { background: #fef3c7; color: #92400e; }
+  .empty { text-align:center; padding:2.5rem; color:var(--gray); }
+  .empty .ei { font-size:2.2rem; margin-bottom:.4rem; }
 
-  .empty-state { text-align: center; padding: 2.5rem; color: var(--neu-gray); }
-  .empty-state .empty-icon { font-size: 2.2rem; margin-bottom: 0.4rem; }
+  /* ── MODALS ── */
+  .ov { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:1000; align-items:center; justify-content:center; padding:1rem; }
+  .ov.show { display:flex; }
+  .modal { background:white; border-radius:20px; padding:2.2rem; max-width:480px; width:100%; max-height:92vh; overflow-y:auto; animation:fadeUp .3s ease; }
+  .modal h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.35rem; color:var(--navy); margin-bottom:.2rem; }
+  .modal-sub { color:var(--gray); font-size:.83rem; margin-bottom:1.4rem; line-height:1.5; }
 
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
-  .modal-overlay.active { display: flex; }
-  .modal { background: white; border-radius: 20px; padding: 2.2rem; max-width: 480px; width: 100%; max-height: 92vh; overflow-y: auto; animation: fadeUp 0.3s ease; }
-  .modal h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--neu-navy); margin-bottom: 0.2rem; }
-  .modal .modal-sub { color: var(--neu-gray); font-size: 0.83rem; margin-bottom: 1.4rem; line-height: 1.5; }
+  .pill { display:flex; align-items:center; gap:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:40px; padding:8px 14px; margin-bottom:1.2rem; }
+  .pill-av { width:28px; height:28px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center; color:white; font-size:.8rem; font-weight:700; overflow:hidden; flex-shrink:0; }
+  .pill-av img { width:28px; height:28px; border-radius:50%; object-fit:cover; }
+  .pill-n { font-size:.85rem; font-weight:700; color:var(--navy); }
+  .pill-e { font-size:.75rem; color:var(--gray); }
 
-  .google-signed-pill { display: flex; align-items: center; gap: 10px; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 40px; padding: 8px 14px; margin-bottom: 1.2rem; }
-  .pill-info .pill-name { font-size: 0.85rem; font-weight: 700; color: var(--neu-navy); }
-  .pill-info .pill-email { font-size: 0.75rem; color: var(--neu-gray); }
+  .suc-wrap { text-align:center; padding:1.5rem 0; }
+  .suc-ic { width:68px; height:68px; background:#d1fae5; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.9rem; margin:0 auto .9rem; }
+  .suc-wrap h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.25rem; color:var(--navy); margin-bottom:.4rem; }
+  .suc-wrap p  { color:var(--gray); font-size:.87rem; margin-bottom:1.3rem; }
 
-  .log-success { text-align: center; padding: 1.5rem 0; }
-  .success-icon { width: 68px; height: 68px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; margin: 0 auto 0.9rem; }
-  .log-success h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; color: var(--neu-navy); margin-bottom: 0.4rem; }
-  .log-success p { color: var(--neu-gray); font-size: 0.87rem; margin-bottom: 1.3rem; }
+  /* Google sign-in loading overlay */
+  .g-loading { display:none; position:fixed; inset:0; background:rgba(26,39,68,.7); z-index:2000; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+  .g-loading.show { display:flex; }
+  .g-spinner { width:44px; height:44px; border:4px solid rgba(200,168,75,.3); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .g-loading p { color:white; font-size:.9rem; font-weight:600; }
 
-  @media (max-width: 600px) {
-    .welcome-card { padding: 1.8rem 1.4rem; }
-    .admin-content { padding: 1rem; }
-    .filters-row { flex-direction: column; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .topbar { padding: 0 1rem; }
-    .user-info { display: none; }
+  @media (max-width:600px) {
+    .welcome-card { padding:1.8rem 1.4rem; }
+    .adm-wrap { padding:1rem; }
+    .filters { flex-direction:column; }
+    .stats { grid-template-columns:1fr 1fr; }
+    .topbar { padding:0 1rem; }
+    .tb-right .tb-uname, .tb-right .tb-role { display:none; }
   }
 </style>
 </head>
 <body>
 
-<!-- WELCOME -->
+<!-- Google loading overlay -->
+<div class="g-loading" id="g-loading">
+  <div class="g-spinner"></div>
+  <p>Signing in with Google…</p>
+</div>
+
+<!-- ══════════════════ WELCOME ══════════════════ -->
 <div id="welcome-screen" class="screen active">
   <div class="welcome-card">
     <div class="neu-logo">
@@ -294,69 +235,59 @@
       </div>
     </div>
     <h2 class="welcome-title">Welcome to NEU Library Visitor Log</h2>
-    <p class="welcome-sub">Sign in with your NEU Google account to log your library visit, or use the Admin portal to view statistics.</p>
-    <hr class="divider">
-    <div class="login-options">
-      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--neu-gray);text-align:center;margin-bottom:2px">Student / Faculty / Visitor</p>
-      <button class="btn btn-google" onclick="triggerGoogleSignIn()">
+    <p class="welcome-sub">Sign in with your NEU Google account to log your library visit. Admins are detected automatically.</p>
+
+    <hr class="div">
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p class="sec-label">Sign in to continue</p>
+
+      <!-- ONE Google button for everyone — admin auto-detected by email -->
+      <button class="btn btn-google" onclick="triggerGoogle('visitor')">
         <svg class="g-icon" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
           <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
           <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
         </svg>
-        Sign in with Google (@neu.edu.ph)
+        Sign in with Google
       </button>
-      <div class="divider-label">or enter email manually</div>
-      <button class="btn btn-outline" onclick="showManualLogin()" style="font-size:0.85rem;padding:10px 16px">✉️ Enter NEU Email Manually</button>
-      <hr class="divider">
-      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--neu-gray);text-align:center;margin-bottom:2px">Administrator</p>
-      <button class="btn btn-gold" onclick="showAdminLogin()">🔐 Admin Login</button>
+
+      <p style="font-size:.76rem;color:var(--gray);text-align:center;line-height:1.5">
+        Use your <strong>@neu.edu.ph</strong> Google account.<br>
+        Admins will be redirected to the dashboard automatically.
+      </p>
     </div>
   </div>
 </div>
 
-<!-- MANUAL EMAIL MODAL -->
-<div id="manual-login-modal" class="modal-overlay">
-  <div class="modal">
-    <h2>Enter NEU Email</h2>
-    <p class="modal-sub">Type your @neu.edu.ph email address to continue.</p>
-    <div class="form-group">
-      <label>NEU Gmail Address</label>
-      <input type="email" id="manual-email" placeholder="yourname@neu.edu.ph" autocomplete="email">
-      <div class="error-msg" id="manual-email-error">Must be a valid @neu.edu.ph email address.</div>
-    </div>
-    <button class="btn btn-primary" onclick="handleManualEmail()" style="margin-bottom:8px">Continue →</button>
-    <button class="btn btn-outline" onclick="closeModal('manual-login-modal')">Cancel</button>
-  </div>
-</div>
-
-<!-- VISITOR REGISTRATION MODAL -->
-<div id="visitor-reg-modal" class="modal-overlay">
+<!-- ══════════════════ VISITOR REGISTRATION ══════════════════ -->
+<div class="ov" id="reg-modal">
   <div class="modal">
     <h2>Log Your Library Visit</h2>
-    <div class="google-signed-pill">
-      <div id="pill-avatar-wrap" style="width:28px;height:28px;border-radius:50%;background:var(--neu-navy);display:flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;font-weight:700;overflow:hidden;flex-shrink:0">?</div>
-      <div class="pill-info">
-        <div class="pill-name" id="pill-name">—</div>
-        <div class="pill-email" id="pill-email">—</div>
+    <div class="pill">
+      <div class="pill-av" id="pill-av">?</div>
+      <div>
+        <div class="pill-n" id="pill-n">—</div>
+        <div class="pill-e" id="pill-e">—</div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>I am a...</label>
-      <div class="type-selector">
-        <button class="type-btn selected" id="type-student" onclick="selectType('student')"><span class="type-icon">🎓</span><span class="type-name">Student</span></button>
-        <button class="type-btn" id="type-faculty" onclick="selectType('faculty')"><span class="type-icon">👨‍🏫</span><span class="type-name">Faculty</span></button>
-        <button class="type-btn" id="type-visitor" onclick="selectType('visitor')"><span class="type-icon">🙋</span><span class="type-name">Visitor</span></button>
+      <label>I am a…</label>
+      <div class="type-sel">
+        <button class="type-btn sel" id="t-student" onclick="selType('student')"><span class="ti">🎓</span><span class="tn">Student</span></button>
+        <button class="type-btn"     id="t-faculty" onclick="selType('faculty')"><span class="ti">👨‍🏫</span><span class="tn">Faculty</span></button>
+        <button class="type-btn"     id="t-visitor" onclick="selType('visitor')"><span class="ti">🙋</span><span class="tn">Visitor</span></button>
       </div>
     </div>
 
-    <div id="student-fields">
+    <!-- Student fields -->
+    <div id="f-student">
       <div class="form-group">
         <label>Course</label>
-        <select id="student-course">
-          <option value="">-- Select your course --</option>
+        <select id="s-course">
+          <option value="">— Select your course —</option>
           <optgroup label="College of Information Technology">
             <option value="BSIT">BSIT – BS Information Technology</option>
             <option value="BSIS">BSIS – BS Information Systems</option>
@@ -371,12 +302,12 @@
           <optgroup label="College of Business">
             <option value="BSAc">BSAc – BS Accountancy</option>
             <option value="BSBA">BSBA – BS Business Administration</option>
-            <option value="BSHRM">BSHRM – BS Hotel & Restaurant Mgmt</option>
+            <option value="BSHRM">BSHRM – Hotel & Restaurant Mgmt</option>
             <option value="BSTM">BSTM – BS Tourism Management</option>
           </optgroup>
           <optgroup label="College of Education">
-            <option value="BEEd">BEEd – Bachelor of Elementary Education</option>
-            <option value="BSEd">BSEd – Bachelor of Secondary Education</option>
+            <option value="BEEd">BEEd – Elementary Education</option>
+            <option value="BSEd">BSEd – Secondary Education</option>
           </optgroup>
           <optgroup label="College of Arts & Sciences">
             <option value="BSPSYCH">BSPSYCH – BS Psychology</option>
@@ -392,585 +323,567 @@
       </div>
       <div class="form-group">
         <label>Student ID Number</label>
-        <input type="text" id="student-id" placeholder="e.g. 24-10793-276" maxlength="20">
-        <div class="input-hint">Format: YY-NNNNN-NNN</div>
-        <div class="error-msg" id="student-id-error">Please enter your Student ID number.</div>
+        <input type="text" id="s-id" placeholder="e.g. 24-10793-276" maxlength="20">
+        <div class="hint">Format: YY-NNNNN-NNN</div>
+        <div class="emsg" id="e-sid">Please enter your Student ID number.</div>
       </div>
     </div>
 
-    <div id="faculty-fields" style="display:none">
+    <!-- Faculty fields -->
+    <div id="f-faculty" style="display:none">
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" id="faculty-name" placeholder="e.g. Juan dela Cruz">
+        <input type="text" id="f-name" placeholder="e.g. Juan dela Cruz">
       </div>
       <div class="form-group">
         <label>Department / College</label>
-        <input type="text" id="faculty-dept" placeholder="e.g. College of IT">
+        <input type="text" id="f-dept" placeholder="e.g. College of IT">
       </div>
     </div>
 
-    <div id="visitor-fields" style="display:none">
+    <!-- Visitor fields -->
+    <div id="f-visitor" style="display:none">
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" id="visitor-name" placeholder="Your full name">
+        <input type="text" id="v-name" placeholder="Your full name">
       </div>
     </div>
 
     <div class="form-group">
       <label>Purpose of Visit</label>
-      <div class="purpose-grid">
-        <button class="purpose-chip" data-purpose="Reading" onclick="selectPurpose(this)">📖 Reading</button>
-        <button class="purpose-chip" data-purpose="Research" onclick="selectPurpose(this)">🔬 Research</button>
-        <button class="purpose-chip" data-purpose="Computer Use" onclick="selectPurpose(this)">💻 Computer Use</button>
-        <button class="purpose-chip" data-purpose="Group Study" onclick="selectPurpose(this)">👥 Group Study</button>
-        <button class="purpose-chip" data-purpose="Borrowing" onclick="selectPurpose(this)">📦 Borrowing</button>
-        <button class="purpose-chip" data-purpose="Returning" onclick="selectPurpose(this)">↩️ Returning</button>
-        <button class="purpose-chip" data-purpose="Printing" onclick="selectPurpose(this)">🖨️ Printing</button>
-        <button class="purpose-chip" data-purpose="Other" onclick="selectPurpose(this)">📌 Other</button>
+      <div class="purp-grid">
+        <button class="purp-chip" data-p="Reading"        onclick="selPurp(this)">📖 Reading</button>
+        <button class="purp-chip" data-p="Research"       onclick="selPurp(this)">🔬 Research</button>
+        <button class="purp-chip" data-p="Computer Use"   onclick="selPurp(this)">💻 Computer Use</button>
+        <button class="purp-chip" data-p="Group Study"    onclick="selPurp(this)">👥 Group Study</button>
+        <button class="purp-chip" data-p="Borrowing Books" onclick="selPurp(this)">📦 Borrowing Books</button>
+        <button class="purp-chip" data-p="Returning Books" onclick="selPurp(this)">↩️ Returning Books</button>
+        <button class="purp-chip" data-p="Printing"       onclick="selPurp(this)">🖨️ Printing</button>
+        <button class="purp-chip" data-p="Other"          onclick="selPurp(this)">📌 Other</button>
       </div>
-      <div class="error-msg" id="purpose-error">Please select your purpose of visit.</div>
+      <div class="emsg" id="e-purp">Please select your purpose of visit.</div>
     </div>
 
-    <button class="btn btn-gold" onclick="submitVisitorLog()" style="margin-bottom:8px">Log My Visit ✓</button>
-    <button class="btn btn-outline" onclick="closeModal('visitor-reg-modal')">Cancel</button>
+    <button class="btn btn-gold" onclick="submitLog()" style="margin-bottom:8px">Log My Visit ✓</button>
+    <button class="btn btn-outline" onclick="closeModal('reg-modal')">Cancel</button>
   </div>
 </div>
 
-<!-- ADMIN LOGIN -->
-<div id="admin-login-modal" class="modal-overlay">
-  <div class="modal">
-    <h2>Admin Login</h2>
-    <p class="modal-sub">Enter admin credentials to access the dashboard.</p>
-    <div class="form-group">
-      <label>Admin Email</label>
-      <input type="email" id="admin-email" placeholder="jcesperanza@neu.edu.ph" autocomplete="email">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="admin-password" placeholder="Enter password">
-      <div class="error-msg" id="admin-error">Invalid credentials. Use: jcesperanza@neu.edu.ph / admin123</div>
-    </div>
-    <button class="btn btn-gold" onclick="handleAdminLogin()" style="margin-bottom:8px">Login as Admin →</button>
-    <button class="btn btn-outline" onclick="closeModal('admin-login-modal')">Cancel</button>
-    <div class="input-hint" style="text-align:center;margin-top:8px">Credentials: jcesperanza@neu.edu.ph / admin123</div>
-  </div>
-</div>
-
-<!-- LOG SUCCESS -->
-<div id="log-success-modal" class="modal-overlay">
+<!-- ══════════════════ LOG SUCCESS ══════════════════ -->
+<div class="ov" id="suc-modal">
   <div class="modal" style="max-width:400px">
-    <div class="log-success">
-      <div class="success-icon">✅</div>
+    <div class="suc-wrap">
+      <div class="suc-ic">✅</div>
       <h3>Visit Logged!</h3>
       <p>Your library visit has been recorded successfully.</p>
-      <div class="log-detail" id="log-detail-content"></div>
-      <button class="btn btn-primary" onclick="closeModal('log-success-modal');showScreen('user-screen')">Go to My Dashboard →</button>
+      <div class="det" id="suc-det"></div>
+      <button class="btn btn-primary" onclick="closeModal('suc-modal');showScreen('user-screen')">Go to My Dashboard →</button>
     </div>
   </div>
 </div>
 
-<!-- USER SCREEN -->
+<!-- ══════════════════ USER SCREEN ══════════════════ -->
 <div id="user-screen" class="screen">
   <div class="topbar">
-    <div class="topbar-brand">
-      <div class="brand-icon">📚</div>
-      <div><div class="brand-name">NEU Library</div><div class="brand-sub">Visitor Log</div></div>
+    <div class="tb-brand">
+      <div class="tb-icon">📚</div>
+      <div><div class="tb-name">NEU Library</div><div class="tb-sub">Visitor Log</div></div>
     </div>
-    <div class="topbar-user">
-      <div class="user-info">
-        <div class="uname" id="user-display-name">—</div>
-        <div class="urole" id="user-display-role">—</div>
+    <div class="tb-right">
+      <div>
+        <div class="tb-uname" id="u-name">—</div>
+        <div class="tb-role"  id="u-role">—</div>
       </div>
-      <div class="user-avatar" id="user-avatar-el"><span id="user-avatar-letter">U</span></div>
-      <button class="logout-btn" onclick="logout()">Sign Out</button>
+      <div class="tb-av" id="u-av"><span id="u-av-l">U</span></div>
+      <button class="sign-out" onclick="logout()">Sign Out</button>
     </div>
   </div>
-  <div class="user-content">
+  <div class="user-wrap">
     <div class="user-card">
-      <div class="success-banner">
-        <div class="welcome-greeting">Welcome to NEU Library! 🎉</div>
-        <div class="welcome-time" id="user-welcome-time"></div>
-        <span class="gold-badge" id="user-badge-role">Student</span>
+      <div class="banner">
+        <div class="banner-h">Welcome to NEU Library! 🎉</div>
+        <div class="banner-t" id="u-time"></div>
+        <span class="badge" id="u-badge">Student</span>
       </div>
-      <h3 class="section-title">Your Visit Summary</h3>
-      <div id="user-visit-summary" class="log-detail"></div>
-      <button class="btn btn-primary" onclick="openRegModal()" style="margin-top:0.5rem">📝 Log Another Visit</button>
+      <h3 class="sec-h">Your Visit Summary</h3>
+      <div class="det" id="u-summary"></div>
+      <button class="btn btn-primary" onclick="openRegModal()" style="margin-top:.5rem">📝 Log Another Visit</button>
     </div>
   </div>
 </div>
 
-<!-- ADMIN SCREEN -->
+<!-- ══════════════════ ADMIN SCREEN ══════════════════ -->
 <div id="admin-screen" class="screen">
   <div class="topbar">
-    <div class="topbar-brand">
-      <div class="brand-icon">📚</div>
-      <div><div class="brand-name">NEU Library</div><div class="brand-sub">Admin Dashboard</div></div>
+    <div class="tb-brand">
+      <div class="tb-icon">📚</div>
+      <div><div class="tb-name">NEU Library</div><div class="tb-sub">Admin Dashboard</div></div>
     </div>
-    <div class="topbar-user">
-      <div class="user-info">
-        <div class="uname">jcesperanza@neu.edu.ph</div>
-        <div class="urole">Administrator</div>
+    <div class="tb-right">
+      <div>
+        <div class="tb-uname" id="a-name">—</div>
+        <div class="tb-role">Administrator</div>
       </div>
-      <div class="user-avatar" style="font-size:0.72rem">JC</div>
-      <button class="logout-btn" onclick="logout()">Sign Out</button>
+      <div class="tb-av" id="a-av">JC</div>
+      <span class="adm-badge">Admin</span>
+      <button class="sign-out" onclick="logout()">Sign Out</button>
     </div>
   </div>
-  <div class="admin-content">
-    <div class="admin-header">
+
+  <div class="adm-wrap">
+    <div class="adm-hdr">
       <div>
         <h2>Library Visitor Dashboard</h2>
-        <p id="admin-date-display"></p>
+        <p id="a-date"></p>
       </div>
       <button class="btn btn-gold btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
     </div>
 
-    <div class="period-tabs">
-      <button class="period-tab active" onclick="setPeriod('today',this)">Today</button>
-      <button class="period-tab" onclick="setPeriod('week',this)">This Week</button>
-      <button class="period-tab" onclick="setPeriod('month',this)">This Month</button>
-      <button class="period-tab" onclick="setPeriod('year',this)">This Year</button>
-      <button class="period-tab" onclick="setPeriod('all',this)">All Time</button>
-      <button class="period-tab" onclick="setPeriod('custom',this)">📅 Date Range</button>
+    <div class="ptabs">
+      <button class="ptab active" onclick="setPeriod('today',this)">Today</button>
+      <button class="ptab" onclick="setPeriod('week',this)">This Week</button>
+      <button class="ptab" onclick="setPeriod('month',this)">This Month</button>
+      <button class="ptab" onclick="setPeriod('year',this)">This Year</button>
+      <button class="ptab" onclick="setPeriod('all',this)">All Time</button>
+      <button class="ptab" onclick="setPeriod('custom',this)">📅 Date Range</button>
     </div>
 
-    <div class="date-range-row" id="date-range-row">
-      <div class="filter-group"><label>From</label><input type="date" id="date-from"></div>
-      <div class="filter-group"><label>To</label><input type="date" id="date-to"></div>
-      <button class="btn btn-primary btn-sm" onclick="applyDateRange()">Apply</button>
+    <div class="drange" id="drange">
+      <div class="fg"><label>From</label><input type="date" id="d-from"></div>
+      <div class="fg"><label>To</label><input type="date" id="d-to"></div>
+      <button class="btn btn-primary btn-sm" onclick="applyRange()">Apply</button>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card navy"><div class="stat-label">Total Visitors</div><div class="stat-value" id="stat-total">0</div><div class="stat-sub">in selected period</div></div>
-      <div class="stat-card"><div class="stat-label">Students</div><div class="stat-value" id="stat-students">0</div><div class="stat-sub">logged visits</div></div>
-      <div class="stat-card green"><div class="stat-label">Faculty</div><div class="stat-value" id="stat-faculty">0</div><div class="stat-sub">logged visits</div></div>
-      <div class="stat-card red"><div class="stat-label">Visitors</div><div class="stat-value" id="stat-visitors">0</div><div class="stat-sub">walk-in</div></div>
-      <div class="stat-card"><div class="stat-label">Top Purpose</div><div class="stat-value" id="stat-top-purpose" style="font-size:1rem;padding-top:6px">—</div><div class="stat-sub">most common</div></div>
+    <div class="stats">
+      <div class="stat nv"><div class="stat-l">Total Visitors</div><div class="stat-v" id="s-total">0</div><div class="stat-s">in selected period</div></div>
+      <div class="stat">   <div class="stat-l">Students</div>      <div class="stat-v" id="s-stu">0</div>  <div class="stat-s">logged visits</div></div>
+      <div class="stat gn"><div class="stat-l">Faculty</div>       <div class="stat-v" id="s-fac">0</div>  <div class="stat-s">logged visits</div></div>
+      <div class="stat rd"><div class="stat-l">Visitors</div>      <div class="stat-v" id="s-vis">0</div>  <div class="stat-s">walk-in</div></div>
+      <div class="stat">   <div class="stat-l">Top Purpose</div>   <div class="stat-v" id="s-top" style="font-size:1rem;padding-top:6px">—</div><div class="stat-s">most common</div></div>
     </div>
 
-    <div class="purpose-breakdown">
+    <div class="purp-bd">
       <h3>Purpose Breakdown</h3>
-      <div class="purpose-bars" id="purpose-bars"></div>
+      <div id="pb-bars"></div>
     </div>
 
-    <div class="filters-row">
-      <div class="filter-group">
+    <div class="filters">
+      <div class="fg">
         <label>Purpose</label>
-        <select id="filter-purpose" onchange="renderTable()">
+        <select id="f-purp" onchange="renderTable()">
           <option value="">All Purposes</option>
           <option>Reading</option><option>Research</option><option>Computer Use</option>
-          <option>Group Study</option><option>Borrowing</option><option>Returning</option>
+          <option>Group Study</option><option>Borrowing Books</option><option>Returning Books</option>
           <option>Printing</option><option>Other</option>
         </select>
       </div>
-      <div class="filter-group">
+      <div class="fg">
         <label>Role</label>
-        <select id="filter-role" onchange="renderTable()">
+        <select id="f-role" onchange="renderTable()">
           <option value="">All Roles</option>
           <option value="Student">Students</option>
           <option value="Faculty">Faculty</option>
           <option value="Visitor">Visitors</option>
         </select>
       </div>
-      <div class="filter-group">
+      <div class="fg">
         <label>Course / Dept</label>
-        <input type="text" id="filter-course" placeholder="e.g. BSIT" oninput="renderTable()">
+        <input type="text" id="f-course" placeholder="e.g. BSIT" oninput="renderTable()">
       </div>
     </div>
 
-    <div class="search-wrap">
-      <div class="search-input-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="search-bar" placeholder="Search by name, student ID, email, date, purpose..." oninput="renderTable()">
+    <div class="srch">
+      <div class="srch-w">
+        <span class="srch-ic">🔍</span>
+        <input type="text" id="srch-bar" placeholder="Search by name, student ID, email, date, purpose…" oninput="renderTable()">
       </div>
       <button class="btn btn-outline btn-sm" onclick="clearSearch()">Clear</button>
     </div>
 
-    <div class="table-wrap">
-      <div class="table-head">
+    <div class="tbl-wrap">
+      <div class="tbl-hd">
         <h3>Visitor Records</h3>
-        <span class="record-count" id="record-count">0 records</span>
+        <span class="rec-cnt" id="rec-cnt">0 records</span>
       </div>
-      <div class="table-scroll">
+      <div class="tbl-sc">
         <table>
           <thead>
-            <tr>
-              <th>#</th><th>Date &amp; Time</th><th>Name / ID</th><th>Email</th><th>Role</th><th>Course / Dept</th><th>Purpose</th>
-            </tr>
+            <tr><th>#</th><th>Date &amp; Time</th><th>Name / ID</th><th>Email</th><th>Role</th><th>Course / Dept</th><th>Purpose</th></tr>
           </thead>
-          <tbody id="visitor-table-body"></tbody>
+          <tbody id="tbl-body"></tbody>
         </table>
       </div>
-      <div id="table-empty" class="empty-state" style="display:none">
-        <div class="empty-icon">📋</div>
+      <div id="tbl-empty" class="empty" style="display:none">
+        <div class="ei">📋</div>
         <p>No records found for the selected filters.</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ══════════════════ JAVASCRIPT ══════════════════ -->
 <script>
-// ============================================================
-//  CONFIGURATION — PASTE YOUR GOOGLE CLIENT ID BELOW
-//  Get it from: https://console.cloud.google.com/
-//  APIs & Services → Credentials → Create OAuth 2.0 Client ID
-//  Authorized JS Origins: https://jovinlowelldula.github.io
-// ============================================================
-const GOOGLE_CLIENT_ID = '185344207310-odaitu3ng2agdu1mf6a8jp3fh649e7me.apps.googleusercontent.comYOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com';
-const ADMIN_EMAIL = 'jcesperanza@neu.edu.ph';
-const ADMIN_PASS  = 'admin123';
+// ─────────────────────────────────────────────
+//  CONFIG
+//  Admin emails — Google Sign-In detects these automatically.
+//  No passwords needed. Just sign in with Google.
+// ─────────────────────────────────────────────
+const ADMIN_EMAILS = [
+  'jcesperanza@neu.edu.ph',
+  'jovinlowell.dula@neu.edu.ph'
+];
 
-// ============================================================
+const CLIENT_ID = '185344207310-odaitu3ng2agdu1mf6a8jp3fh649e7me.apps.googleusercontent.com';
+
+// ─────────────────────────────────────────────
 //  STATE
-// ============================================================
-let currentUser    = null;
-let currentType    = 'student';
-let currentPurpose = '';
-let currentPeriod  = 'today';
-let customFrom = null, customTo = null;
+// ─────────────────────────────────────────────
+let gUser       = null;   // { email, name, picture }
+let curType     = 'student';
+let curPurpose  = '';
+let curPeriod   = 'today';
+let rangeFrom   = null;
+let rangeTo     = null;
 
-// ============================================================
-//  STORAGE + DEMO SEED
-// ============================================================
-function getVisitors() { try { return JSON.parse(localStorage.getItem('neu_visitors')||'[]'); } catch { return []; } }
-function saveVisitors(a) { localStorage.setItem('neu_visitors', JSON.stringify(a)); }
+// ─────────────────────────────────────────────
+//  STORAGE  (no demo data — starts clean)
+// ─────────────────────────────────────────────
+function getRecords()   { try { return JSON.parse(localStorage.getItem('neu_lib_v2') || '[]'); } catch { return []; } }
+function saveRecords(a) { localStorage.setItem('neu_lib_v2', JSON.stringify(a)); }
 
-(function seed() {
-  if (localStorage.getItem('neu_seeded')) return;
-  const now=new Date(), purposes=['Reading','Research','Computer Use','Group Study','Borrowing','Returning','Printing'];
-  const courses=['BSIT','BSIS','BSCS','BSEM','BSAc','BSBA','BSPSYCH'], demos=[];
-  for(let d=0;d<30;d++){
-    for(let v=0;v<Math.floor(Math.random()*8)+2;v++){
-      const dt=new Date(now); dt.setDate(dt.getDate()-d); dt.setHours(8+Math.floor(Math.random()*10),Math.floor(Math.random()*60));
-      const roles=['Student','Student','Student','Faculty','Visitor'];
-      const role=roles[Math.floor(Math.random()*roles.length)];
-      demos.push({id:'demo_'+d+'_'+v, timestamp:dt.toISOString(),
-        email:role==='Faculty'?'faculty'+v+'@neu.edu.ph':'student'+v+'@neu.edu.ph',
-        name:role==='Faculty'?'Prof. Demo'+v:role==='Visitor'?'Walk-in Visitor':'',
-        studentId:role==='Student'?('24-'+(10000+Math.floor(Math.random()*9000))+'-'+(100+Math.floor(Math.random()*900))):'',
-        role, course:role==='Student'?courses[Math.floor(Math.random()*courses.length)]:'',
-        dept:role==='Faculty'?'College of IT':'',
-        purpose:purposes[Math.floor(Math.random()*purposes.length)]});
-    }
-  }
-  saveVisitors(demos); localStorage.setItem('neu_seeded','1');
-})();
-
-// ============================================================
+// ─────────────────────────────────────────────
 //  NAVIGATION
-// ============================================================
-function showScreen(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-function showModal(id)  { document.getElementById(id).classList.add('active'); }
-function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-function showError(id)  { document.getElementById(id).style.display='block'; }
-function hideError(id)  { document.getElementById(id).style.display='none'; }
+// ─────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showModal(id)  { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+function showErr(id)    { document.getElementById(id).style.display = 'block'; }
+function hideErr(id)    { document.getElementById(id).style.display = 'none'; }
+function showLoading()  { document.getElementById('g-loading').classList.add('show'); }
+function hideLoading()  { document.getElementById('g-loading').classList.remove('show'); }
 
-// ============================================================
-//  GOOGLE SIGN-IN
-// ============================================================
-function triggerGoogleSignIn() {
-  const hasClientId = GOOGLE_CLIENT_ID && !GOOGLE_CLIENT_ID.startsWith('YOUR_GOOGLE');
-
-  if (!hasClientId) {
-    // No client ID set — show helpful message then open manual fallback
-    const msg = [
-      '⚠️  Google Sign-In needs a one-time setup:',
-      '',
-      '1. Go to: console.cloud.google.com',
-      '2. Create a project (or select existing)',
-      '3. APIs & Services → Credentials',
-      '4. Create → OAuth 2.0 Client ID → Web application',
-      '5. Authorized JS Origins:',
-      '   https://jovinlowelldula.github.io',
-      '6. Copy the Client ID',
-      '7. Open index.html in VS Code',
-      '8. Find: YOUR_GOOGLE_CLIENT_ID_HERE',
-      '9. Replace it with your Client ID',
-      '10. Save & upload to GitHub',
-      '',
-      'For now, use "Enter Email Manually" below.'
-    ].join('\n');
-    alert(msg);
-    showManualLogin();
-    return;
+// ─────────────────────────────────────────────
+//  GOOGLE SIGN-IN  (one button for everyone)
+// ─────────────────────────────────────────────
+function triggerGoogle() {
+  showLoading();
+  try {
+    const client = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: 'email profile openid',
+      callback: onToken,
+      error_callback: (e) => {
+        hideLoading();
+        alert('Google Sign-In failed. Please try again.\n\nIf this keeps happening, check that pop-ups are allowed for this site.');
+      }
+    });
+    client.requestAccessToken({ prompt: 'select_account' });
+  } catch(e) {
+    hideLoading();
+    alert('Google Sign-In could not start. Make sure you have an internet connection and try again.');
   }
-
-  // Initialize and trigger Google Sign-In popup
-  google.accounts.id.initialize({
-    client_id: GOOGLE_CLIENT_ID,
-    callback: handleGoogleCredential,
-    ux_mode: 'popup',
-    context: 'signin'
-  });
-
-  // Use the OAuth2 token flow which shows the account picker with saved accounts
-  const client = google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: 'email profile openid',
-    callback: handleOAuthToken,
-    error_callback: () => showManualLogin()
-  });
-
-  client.requestAccessToken({ prompt: 'select_account' });
 }
 
-function handleOAuthToken(tokenResponse) {
-  if (!tokenResponse || !tokenResponse.access_token) { showManualLogin(); return; }
+function onToken(tok) {
+  if (!tok || !tok.access_token) { hideLoading(); return; }
   fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-    headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
+    headers: { Authorization: 'Bearer ' + tok.access_token }
   })
   .then(r => r.json())
-  .then(info => processGoogleUser({ email: info.email, name: info.name, picture: info.picture }))
-  .catch(() => showManualLogin());
+  .then(info => {
+    hideLoading();
+    onUser({ email: info.email, name: info.name, picture: info.picture });
+  })
+  .catch(() => {
+    hideLoading();
+    alert('Could not get your Google account info. Please try again.');
+  });
 }
 
-function handleGoogleCredential(response) {
-  try {
-    const p = JSON.parse(atob(response.credential.split('.')[1]));
-    processGoogleUser({ email: p.email, name: p.name, picture: p.picture });
-  } catch { showManualLogin(); }
-}
+function onUser(user) {
+  const email = (user.email || '').toLowerCase();
 
-function processGoogleUser(user) {
-  if (!user.email || !user.email.toLowerCase().endsWith('@neu.edu.ph')) {
-    alert('❌ Only @neu.edu.ph Google accounts are allowed.\n\nPlease sign in with your NEU-issued Google account (e.g. yourname@neu.edu.ph).');
+  // Must be @neu.edu.ph
+  if (!email.endsWith('@neu.edu.ph')) {
+    alert('❌ Only @neu.edu.ph Google accounts are allowed.\n\nPlease sign in with your NEU-issued Google account.');
     return;
   }
-  currentUser = user;
-  openRegModal();
-}
 
-// ============================================================
-//  MANUAL EMAIL
-// ============================================================
-function showManualLogin() {
-  document.getElementById('manual-email').value = '';
-  hideError('manual-email-error');
-  showModal('manual-login-modal');
-}
+  gUser = user;
 
-function handleManualEmail() {
-  const email = document.getElementById('manual-email').value.trim().toLowerCase();
-  if (!email.endsWith('@neu.edu.ph') || !email.includes('@')) { showError('manual-email-error'); return; }
-  hideError('manual-email-error');
-  currentUser = { email, name: '', picture: '' };
-  closeModal('manual-login-modal');
-  openRegModal();
-}
-
-// ============================================================
-//  REGISTRATION MODAL
-// ============================================================
-function openRegModal() {
-  selectType('student');
-  document.querySelectorAll('.purpose-chip').forEach(c=>c.classList.remove('selected'));
-  currentPurpose = '';
-  ['student-id','student-course','faculty-name','faculty-dept','visitor-name'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
-  hideError('purpose-error'); hideError('student-id-error');
-
-  document.getElementById('pill-email').textContent = currentUser.email;
-  document.getElementById('pill-name').textContent  = currentUser.name || currentUser.email.split('@')[0];
-  const av = document.getElementById('pill-avatar-wrap');
-  if (currentUser.picture) {
-    av.innerHTML = `<img src="${currentUser.picture}" style="width:28px;height:28px;border-radius:50%;object-fit:cover" alt="">`;
-  } else {
-    av.textContent = (currentUser.name || currentUser.email)[0].toUpperCase();
-    av.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--neu-navy);display:flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;font-weight:700;flex-shrink:0';
+  // ── Admin auto-detection ──
+  if (ADMIN_EMAILS.includes(email)) {
+    // Set admin topbar
+    const initials = email.split('@')[0].split('.').map(w => w[0].toUpperCase()).join('').slice(0,2);
+    document.getElementById('a-name').textContent = user.name || email;
+    const aAv = document.getElementById('a-av');
+    if (user.picture) {
+      aAv.innerHTML = `<img src="${user.picture}" alt="">`;
+    } else {
+      aAv.textContent = initials;
+    }
+    document.getElementById('a-date').textContent =
+      'Real-time visitor logs · ' + new Date().toLocaleDateString('en-PH', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    renderDashboard();
+    showScreen('admin-screen');
+    return;
   }
 
-  showModal('visitor-reg-modal');
+  // ── Regular user ──
+  openRegModal();
 }
 
-// ============================================================
-//  ADMIN LOGIN
-// ============================================================
-function showAdminLogin() {
-  document.getElementById('admin-email').value='';
-  document.getElementById('admin-password').value='';
-  hideError('admin-error');
-  showModal('admin-login-modal');
+function logout() {
+  gUser = null;
+  showScreen('welcome-screen');
 }
 
-function handleAdminLogin() {
-  const email = document.getElementById('admin-email').value.trim().toLowerCase();
-  const pass  = document.getElementById('admin-password').value;
-  if (email===ADMIN_EMAIL && pass===ADMIN_PASS) {
-    hideError('admin-error');
-    closeModal('admin-login-modal');
-    document.getElementById('admin-date-display').textContent =
-      'Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    renderAdminDashboard();
-    showScreen('admin-screen');
-  } else { showError('admin-error'); }
+// ─────────────────────────────────────────────
+//  REGISTRATION MODAL
+// ─────────────────────────────────────────────
+function openRegModal() {
+  // Reset form
+  selType('student');
+  document.querySelectorAll('.purp-chip').forEach(c => c.classList.remove('sel'));
+  curPurpose = '';
+  ['s-id','s-course','f-name','f-dept','v-name'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  hideErr('e-sid'); hideErr('e-purp');
+
+  // Fill pill with Google info
+  document.getElementById('pill-e').textContent = gUser.email;
+  document.getElementById('pill-n').textContent = gUser.name || gUser.email.split('@')[0];
+  const av = document.getElementById('pill-av');
+  if (gUser.picture) {
+    av.innerHTML = `<img src="${gUser.picture}" alt="">`;
+  } else {
+    av.textContent = (gUser.name || gUser.email)[0].toUpperCase();
+  }
+
+  showModal('reg-modal');
 }
 
-function logout() { currentUser=null; showScreen('welcome-screen'); }
-
-// ============================================================
-//  FORM CONTROLS
-// ============================================================
-function selectType(type) {
-  currentType=type;
-  ['student','faculty','visitor'].forEach(t=>{
-    document.getElementById('type-'+t).classList.toggle('selected',t===type);
-    document.getElementById(t+'-fields').style.display=t===type?'block':'none';
+function selType(t) {
+  curType = t;
+  ['student','faculty','visitor'].forEach(x => {
+    document.getElementById('t-'+x).classList.toggle('sel', x===t);
+    document.getElementById('f-'+x).style.display = x===t ? 'block' : 'none';
   });
 }
 
-function selectPurpose(el) {
-  document.querySelectorAll('.purpose-chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  currentPurpose=el.dataset.purpose;
-  hideError('purpose-error');
+function selPurp(el) {
+  document.querySelectorAll('.purp-chip').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  curPurpose = el.dataset.p;
+  hideErr('e-purp');
 }
 
-// ============================================================
+// ─────────────────────────────────────────────
 //  SUBMIT LOG
-// ============================================================
-function submitVisitorLog() {
-  if (!currentPurpose) { showError('purpose-error'); return; }
-  let name='', studentId='', course='', dept='';
+// ─────────────────────────────────────────────
+function submitLog() {
+  if (!curPurpose) { showErr('e-purp'); return; }
+  let name='', sid='', course='', dept='';
 
-  if (currentType==='student') {
-    studentId=document.getElementById('student-id').value.trim();
-    course=document.getElementById('student-course').value;
-    if (!studentId) { showError('student-id-error'); return; }
-    hideError('student-id-error');
-  } else if (currentType==='faculty') {
-    name=document.getElementById('faculty-name').value.trim()||currentUser.name||'Faculty Member';
-    dept=document.getElementById('faculty-dept').value.trim()||'NEU';
+  if (curType === 'student') {
+    sid    = document.getElementById('s-id').value.trim();
+    course = document.getElementById('s-course').value;
+    if (!sid) { showErr('e-sid'); return; }
+    hideErr('e-sid');
+  } else if (curType === 'faculty') {
+    name = document.getElementById('f-name').value.trim() || gUser.name || 'Faculty Member';
+    dept = document.getElementById('f-dept').value.trim() || 'NEU';
   } else {
-    name=document.getElementById('visitor-name').value.trim()||'Walk-in Visitor';
+    name = document.getElementById('v-name').value.trim() || 'Walk-in Visitor';
   }
 
-  const roleLabel=currentType==='student'?'Student':currentType==='faculty'?'Faculty':'Visitor';
-  const record={
-    id:Date.now().toString(), timestamp:new Date().toISOString(),
-    email:currentUser.email, name:name||currentUser.name||'',
-    picture:currentUser.picture||'', studentId, role:roleLabel, course, dept, purpose:currentPurpose
+  const role = curType==='student' ? 'Student' : curType==='faculty' ? 'Faculty' : 'Visitor';
+  const rec = {
+    id:        Date.now().toString(),
+    timestamp: new Date().toISOString(),
+    email:     gUser.email,
+    name:      name || gUser.name || '',
+    picture:   gUser.picture || '',
+    sid, role, course, dept,
+    purpose:   curPurpose
   };
 
-  const v=getVisitors(); v.push(record); saveVisitors(v);
+  const arr = getRecords();
+  arr.push(rec);
+  saveRecords(arr);
 
-  const displayName=studentId||currentUser.name||currentUser.email.split('@')[0];
-  document.getElementById('user-display-name').textContent=displayName;
-  document.getElementById('user-display-role').textContent=roleLabel;
-  document.getElementById('user-badge-role').textContent=roleLabel;
-  document.getElementById('user-welcome-time').textContent=new Date().toLocaleString('en-PH');
+  // User screen topbar
+  const dispName = sid || gUser.name || gUser.email.split('@')[0];
+  document.getElementById('u-name').textContent  = dispName;
+  document.getElementById('u-role').textContent  = role;
+  document.getElementById('u-badge').textContent = role;
+  document.getElementById('u-time').textContent  = new Date().toLocaleString('en-PH');
+  const uAv = document.getElementById('u-av');
+  uAv.innerHTML = gUser.picture
+    ? `<img src="${gUser.picture}" alt="">`
+    : `<span>${dispName[0].toUpperCase()}</span>`;
 
-  const avatarEl=document.getElementById('user-avatar-el');
-  if (currentUser.picture) {
-    avatarEl.innerHTML=`<img src="${currentUser.picture}" alt="">`;
-  } else {
-    avatarEl.innerHTML=`<span id="user-avatar-letter">${displayName[0].toUpperCase()}</span>`;
-  }
-
-  document.getElementById('user-visit-summary').innerHTML=buildRows({
-    'Date & Time':new Date(record.timestamp).toLocaleString('en-PH'),
-    'Email':record.email,
-    ...(record.studentId?{'Student ID':record.studentId}:{}),
-    ...(record.name&&!record.studentId?{'Name':record.name}:{}),
-    ...(record.course?{'Course':record.course}:{}),
-    ...(record.dept?{'Department':record.dept}:{}),
-    'Purpose':record.purpose
+  // User visit summary
+  document.getElementById('u-summary').innerHTML = rows({
+    'Date & Time': new Date(rec.timestamp).toLocaleString('en-PH'),
+    'Email':       rec.email,
+    ...(rec.sid    ? {'Student ID':  rec.sid}    : {}),
+    ...(rec.name && !rec.sid ? {'Name': rec.name} : {}),
+    ...(rec.course ? {'Course':      rec.course}  : {}),
+    ...(rec.dept   ? {'Department':  rec.dept}    : {}),
+    'Purpose':     rec.purpose
   });
 
-  document.getElementById('log-detail-content').innerHTML=buildRows({
-    'Date & Time':new Date(record.timestamp).toLocaleString('en-PH'),
-    'Role':record.role,
-    ...(record.studentId?{'Student ID':record.studentId}:{}),
-    'Purpose':record.purpose
+  // Success modal
+  document.getElementById('suc-det').innerHTML = rows({
+    'Date & Time': new Date(rec.timestamp).toLocaleString('en-PH'),
+    'Role':        rec.role,
+    ...(rec.sid ? {'Student ID': rec.sid} : {}),
+    'Purpose':     rec.purpose
   });
 
-  closeModal('visitor-reg-modal');
-  showModal('log-success-modal');
+  closeModal('reg-modal');
+  showModal('suc-modal');
 }
 
-function buildRows(obj) {
-  return Object.entries(obj).map(([k,v])=>`<div class="log-detail-row"><span class="key">${k}</span><span class="val">${v}</span></div>`).join('');
+function rows(obj) {
+  return Object.entries(obj).map(([k,v]) =>
+    `<div class="det-r"><span class="det-k">${k}</span><span class="det-v">${v}</span></div>`
+  ).join('');
 }
 
-// ============================================================
+// ─────────────────────────────────────────────
 //  ADMIN DASHBOARD
-// ============================================================
-function setPeriod(period,btn) {
-  currentPeriod=period;
-  document.querySelectorAll('.period-tab').forEach(b=>b.classList.remove('active'));
+// ─────────────────────────────────────────────
+function setPeriod(p, btn) {
+  curPeriod = p;
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('date-range-row').classList.toggle('visible',period==='custom');
-  if (period!=='custom') renderAdminDashboard();
+  document.getElementById('drange').classList.toggle('show', p==='custom');
+  if (p !== 'custom') renderDashboard();
 }
-function applyDateRange() { customFrom=document.getElementById('date-from').value; customTo=document.getElementById('date-to').value; renderAdminDashboard(); }
 
-function getByPeriod(visitors) {
-  const now=new Date();
-  return visitors.filter(v=>{
-    const dt=new Date(v.timestamp);
-    if (currentPeriod==='today')  return dt.toDateString()===now.toDateString();
-    if (currentPeriod==='week')   { const w=new Date(now); w.setDate(w.getDate()-7); return dt>=w; }
-    if (currentPeriod==='month')  return dt.getMonth()===now.getMonth()&&dt.getFullYear()===now.getFullYear();
-    if (currentPeriod==='year')   return dt.getFullYear()===now.getFullYear();
-    if (currentPeriod==='custom'&&customFrom&&customTo) { const f=new Date(customFrom),t=new Date(customTo); t.setHours(23,59,59); return dt>=f&&dt<=t; }
+function applyRange() {
+  rangeFrom = document.getElementById('d-from').value;
+  rangeTo   = document.getElementById('d-to').value;
+  renderDashboard();
+}
+
+function byPeriod(records) {
+  const now = new Date();
+  return records.filter(r => {
+    const dt = new Date(r.timestamp);
+    if (curPeriod==='today')  return dt.toDateString() === now.toDateString();
+    if (curPeriod==='week')   { const w=new Date(now); w.setDate(w.getDate()-7); return dt>=w; }
+    if (curPeriod==='month')  return dt.getMonth()===now.getMonth() && dt.getFullYear()===now.getFullYear();
+    if (curPeriod==='year')   return dt.getFullYear()===now.getFullYear();
+    if (curPeriod==='custom' && rangeFrom && rangeTo) {
+      const f=new Date(rangeFrom), t=new Date(rangeTo); t.setHours(23,59,59);
+      return dt>=f && dt<=t;
+    }
     return true;
   });
 }
 
-function renderAdminDashboard() {
-  const f=getByPeriod(getVisitors());
-  document.getElementById('stat-total').textContent=f.length;
-  document.getElementById('stat-students').textContent=f.filter(v=>v.role==='Student').length;
-  document.getElementById('stat-faculty').textContent=f.filter(v=>v.role==='Faculty').length;
-  document.getElementById('stat-visitors').textContent=f.filter(v=>v.role==='Visitor').length;
-  const pc={}; f.forEach(v=>{pc[v.purpose]=(pc[v.purpose]||0)+1;});
-  const top=Object.entries(pc).sort((a,b)=>b[1]-a[1])[0];
-  document.getElementById('stat-top-purpose').textContent=top?top[0]:'—';
-  const entries=Object.entries(pc).sort((a,b)=>b[1]-a[1]), max=entries[0]?.[1]||1;
-  document.getElementById('purpose-bars').innerHTML=entries.length
-    ? entries.map(([p,c])=>`<div class="purpose-bar-row"><div class="purpose-bar-label">${p}</div><div class="purpose-bar-track"><div class="purpose-bar-fill" style="width:${Math.round(c/max*100)}%"></div></div><div class="purpose-bar-count">${c}</div></div>`).join('')
-    : '<p style="color:var(--neu-gray);font-size:.83rem">No data for this period.</p>';
+function renderDashboard() {
+  const f = byPeriod(getRecords());
+
+  document.getElementById('s-total').textContent = f.length;
+  document.getElementById('s-stu').textContent   = f.filter(r=>r.role==='Student').length;
+  document.getElementById('s-fac').textContent   = f.filter(r=>r.role==='Faculty').length;
+  document.getElementById('s-vis').textContent   = f.filter(r=>r.role==='Visitor').length;
+
+  const pc={};
+  f.forEach(r => { pc[r.purpose] = (pc[r.purpose]||0)+1; });
+  const topEntry = Object.entries(pc).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('s-top').textContent = topEntry ? topEntry[0] : '—';
+
+  // Purpose bars
+  const entries = Object.entries(pc).sort((a,b)=>b[1]-a[1]);
+  const max     = entries[0]?.[1] || 1;
+  document.getElementById('pb-bars').innerHTML = entries.length
+    ? entries.map(([p,c]) => `
+        <div class="pb-row">
+          <div class="pb-lbl">${p}</div>
+          <div class="pb-trk"><div class="pb-fil" style="width:${Math.round(c/max*100)}%"></div></div>
+          <div class="pb-cnt">${c}</div>
+        </div>`).join('')
+    : '<p style="color:var(--gray);font-size:.83rem">No visits recorded yet for this period.</p>';
+
   renderTable();
 }
 
 function renderTable() {
-  let f=getByPeriod(getVisitors());
-  const s=document.getElementById('search-bar').value.trim().toLowerCase();
-  const fp=document.getElementById('filter-purpose').value;
-  const fr=document.getElementById('filter-role').value;
-  const fc=document.getElementById('filter-course').value.trim().toLowerCase();
-  if (fp) f=f.filter(v=>v.purpose===fp);
-  if (fr) f=f.filter(v=>v.role===fr);
-  if (fc) f=f.filter(v=>(v.course||'').toLowerCase().includes(fc)||(v.dept||'').toLowerCase().includes(fc));
-  if (s)  f=f.filter(v=>[v.email,v.name,v.studentId,v.role,v.course,v.dept,v.purpose,new Date(v.timestamp).toLocaleString('en-PH')].some(x=>(x||'').toLowerCase().includes(s)));
-  f.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
-  document.getElementById('record-count').textContent=f.length+' record'+(f.length!==1?'s':'');
-  if (!f.length) { document.getElementById('visitor-table-body').innerHTML=''; document.getElementById('table-empty').style.display='block'; return; }
-  document.getElementById('table-empty').style.display='none';
-  document.getElementById('visitor-table-body').innerHTML=f.map((v,i)=>{
-    const dt=new Date(v.timestamp), rc=v.role==='Student'?'role-student':v.role==='Faculty'?'role-faculty':'role-visitor';
-    const id2=v.studentId?`<strong>${v.studentId}</strong><br><small style="color:var(--neu-gray)">${v.email}</small>`:(v.name||v.email);
-    return `<tr><td>${i+1}</td><td><div style="font-weight:700;font-size:.8rem">${dt.toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})}</div><div style="color:var(--neu-gray);font-size:.76rem">${dt.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit'})}</div></td><td>${id2}</td><td style="font-size:.8rem;color:var(--neu-gray)">${v.email}</td><td><span class="role-tag ${rc}">${v.role}</span></td><td style="font-size:.8rem">${v.course||v.dept||'—'}</td><td><span class="purpose-tag">${v.purpose}</span></td></tr>`;
+  let f = byPeriod(getRecords());
+  const s  = document.getElementById('srch-bar').value.trim().toLowerCase();
+  const fp = document.getElementById('f-purp').value;
+  const fr = document.getElementById('f-role').value;
+  const fc = document.getElementById('f-course').value.trim().toLowerCase();
+
+  if (fp) f = f.filter(r => r.purpose === fp);
+  if (fr) f = f.filter(r => r.role    === fr);
+  if (fc) f = f.filter(r => (r.course||'').toLowerCase().includes(fc) || (r.dept||'').toLowerCase().includes(fc));
+  if (s)  f = f.filter(r => [r.email, r.name, r.sid, r.role, r.course, r.dept, r.purpose,
+    new Date(r.timestamp).toLocaleString('en-PH')].some(x => (x||'').toLowerCase().includes(s)));
+
+  f.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+  document.getElementById('rec-cnt').textContent = f.length + ' record' + (f.length!==1?'s':'');
+
+  if (!f.length) {
+    document.getElementById('tbl-body').innerHTML = '';
+    document.getElementById('tbl-empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('tbl-empty').style.display = 'none';
+  document.getElementById('tbl-body').innerHTML = f.map((r,i) => {
+    const dt  = new Date(r.timestamp);
+    const rc  = r.role==='Student' ? 'rs' : r.role==='Faculty' ? 'rf' : 'rv';
+    const who = r.sid
+      ? `<strong>${r.sid}</strong><br><small style="color:var(--gray)">${r.email}</small>`
+      : (r.name || r.email);
+    return `<tr>
+      <td>${i+1}</td>
+      <td>
+        <div style="font-weight:700;font-size:.8rem">${dt.toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})}</div>
+        <div style="color:var(--gray);font-size:.76rem">${dt.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit'})}</div>
+      </td>
+      <td>${who}</td>
+      <td style="font-size:.8rem;color:var(--gray)">${r.email}</td>
+      <td><span class="r-tag ${rc}">${r.role}</span></td>
+      <td style="font-size:.8rem">${r.course||r.dept||'—'}</td>
+      <td><span class="p-tag">${r.purpose}</span></td>
+    </tr>`;
   }).join('');
 }
 
 function clearSearch() {
-  ['search-bar','filter-purpose','filter-role','filter-course'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['srch-bar','f-purp','f-role','f-course'].forEach(id => { const e=document.getElementById(id); if(e) e.value=''; });
   renderTable();
 }
 
 function exportCSV() {
-  const f=getByPeriod(getVisitors()).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
-  const hdr=['#','Date','Time','Email','Name','Student ID','Role','Course/Dept','Purpose'];
-  const rows=f.map((v,i)=>{const dt=new Date(v.timestamp);return[i+1,dt.toLocaleDateString('en-PH'),dt.toLocaleTimeString('en-PH'),v.email,v.name||'',v.studentId||'',v.role,v.course||v.dept||'',v.purpose];});
-  const csv=[hdr,...rows].map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download='NEU_Library_'+new Date().toISOString().split('T')[0]+'.csv'; a.click();
+  const f = byPeriod(getRecords()).sort((a,b) => new Date(b.timestamp)-new Date(a.timestamp));
+  const hdr = ['#','Date','Time','Email','Name','Student ID','Role','Course/Dept','Purpose'];
+  const csv = [hdr, ...f.map((r,i) => {
+    const dt=new Date(r.timestamp);
+    return [i+1, dt.toLocaleDateString('en-PH'), dt.toLocaleTimeString('en-PH'),
+      r.email, r.name||'', r.sid||'', r.role, r.course||r.dept||'', r.purpose];
+  })].map(row => row.map(c=>`"${c}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'NEU_Library_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
 }
 
-// Close on overlay click
-document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active');}));
-// Enter keys
-document.getElementById('manual-email').addEventListener('keydown',e=>{if(e.key==='Enter')handleManualEmail();});
-document.getElementById('admin-password').addEventListener('keydown',e=>{if(e.key==='Enter')handleAdminLogin();});
-document.getElementById('student-id').addEventListener('keydown',e=>{if(e.key==='Enter')submitVisitorLog();});
+// Close modals on backdrop click
+document.querySelectorAll('.ov').forEach(o => {
+  o.addEventListener('click', e => { if(e.target===o) o.classList.remove('show'); });
+});
+
+// Enter key
+document.getElementById('s-id').addEventListener('keydown', e => { if(e.key==='Enter') submitLog(); });
 </script>
 </body>
 </html>
