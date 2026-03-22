@@ -20,152 +20,63 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--navy);min-height:100vh;color:#1a1a1a;overflow-x:hidden;}
 
-/* ━━━━━━━━━━━━━━━━━━ SCREENS ━━━━━━━━━━━━━━━━━━ */
 .screen{display:none;min-height:100vh;}
 .screen.active{display:flex;}
 
-/* ━━━━━━━━━━━━━━━━━━ SPLASH SCREEN ━━━━━━━━━━━━━━━━━━ */
+/* ── SPLASH ── */
 #splash-screen{
   flex-direction:column;align-items:center;justify-content:center;
   background:linear-gradient(160deg,#0d1829 0%,#1a2744 40%,#1e3060 70%,#1a2744 100%);
-  position:relative;overflow:hidden;cursor:pointer;
-  min-height:100vh;
+  position:relative;overflow:hidden;cursor:pointer;min-height:100vh;
 }
-
-/* animated background stars */
 .stars{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
 .star{position:absolute;border-radius:50%;background:rgba(200,168,75,.6);animation:twinkle 3s infinite alternate;}
 @keyframes twinkle{0%{opacity:.2;transform:scale(1);}100%{opacity:.9;transform:scale(1.4);}}
-
-/* big decorative circle */
-.splash-circle{
-  position:absolute;width:520px;height:520px;border-radius:50%;
-  border:1px solid rgba(200,168,75,.12);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-.splash-circle2{
-  position:absolute;width:360px;height:360px;border-radius:50%;
-  border:1px solid rgba(200,168,75,.08);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-
-/* Library SVG illustration wrapper */
-.lib-illustration{
-  position:relative;z-index:2;
-  margin-bottom:2rem;
-  animation:floatUp 1s ease forwards;
-  opacity:0;
-}
+.splash-circle{position:absolute;width:520px;height:520px;border-radius:50%;border:1px solid rgba(200,168,75,.12);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.splash-circle2{position:absolute;width:360px;height:360px;border-radius:50%;border:1px solid rgba(200,168,75,.08);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.lib-illustration{position:relative;z-index:2;margin-bottom:2rem;animation:floatUp 1s ease forwards;opacity:0;}
 @keyframes floatUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-
-.splash-brand{
-  position:relative;z-index:2;
-  text-align:center;
-  animation:floatUp 1s .2s ease forwards;
-  opacity:0;
-}
-.splash-neu{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.6rem,5vw,2.4rem);
-  color:white;
-  letter-spacing:.02em;
-  margin-bottom:.3rem;
-}
+.splash-brand{position:relative;z-index:2;text-align:center;animation:floatUp 1s .2s ease forwards;opacity:0;}
+.splash-neu{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:white;letter-spacing:.02em;margin-bottom:.3rem;}
 .splash-neu span{color:var(--gold);}
-.splash-sub{
-  font-size:.85rem;color:rgba(255,255,255,.55);
-  letter-spacing:.18em;text-transform:uppercase;
-  margin-bottom:2rem;
-}
-.splash-tagline{
-  font-family:'Playfair Display',serif;
-  font-style:italic;
-  font-size:1.05rem;
-  color:rgba(255,255,255,.7);
-  margin-bottom:2.5rem;
-}
-
-.splash-cta{
-  position:relative;z-index:2;
-  animation:floatUp 1s .4s ease forwards;
-  opacity:0;
-  display:flex;flex-direction:column;align-items:center;gap:.8rem;
-}
-.cta-btn{
-  background:var(--gold);color:var(--navy);
-  border:none;border-radius:50px;
-  padding:14px 48px;
-  font-family:'DM Sans',sans-serif;
-  font-size:1rem;font-weight:700;
-  cursor:pointer;
-  transition:all .25s;
-  box-shadow:0 4px 20px rgba(200,168,75,.4);
-  letter-spacing:.03em;
-}
+.splash-sub{font-size:.85rem;color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;}
+.splash-tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.7);margin-bottom:2.5rem;}
+.splash-cta{position:relative;z-index:2;animation:floatUp 1s .4s ease forwards;opacity:0;display:flex;flex-direction:column;align-items:center;gap:.8rem;}
+.cta-btn{background:var(--gold);color:var(--navy);border:none;border-radius:50px;padding:14px 48px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(200,168,75,.4);letter-spacing:.03em;}
 .cta-btn:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 6px 28px rgba(200,168,75,.55);}
 .tap-hint{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.05em;}
 
-/* ━━━━━━━━━━━━━━━━━━ LOGIN SCREEN ━━━━━━━━━━━━━━━━━━ */
-#login-screen{
-  flex-direction:row;
-  align-items:stretch;
-  min-height:100vh;
-}
-
-/* Left panel — decorative */
-.login-left{
-  flex:1;
-  background:linear-gradient(160deg,#0d1829 0%,#1a2744 50%,#1e3060 100%);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:3rem 2rem;
-  position:relative;overflow:hidden;
-}
+/* ── LOGIN ── */
+#login-screen{flex-direction:row;align-items:stretch;min-height:100vh;}
+.login-left{flex:1;background:linear-gradient(160deg,#0d1829 0%,#1a2744 50%,#1e3060 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;position:relative;overflow:hidden;}
 .login-left::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid rgba(200,168,75,.1);top:-100px;right:-100px;pointer-events:none;}
 .login-left::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(200,168,75,.08);bottom:-80px;left:-60px;pointer-events:none;}
-
 .ll-content{position:relative;z-index:1;text-align:center;max-width:340px;}
 .ll-title{font-family:'Playfair Display',serif;font-size:2rem;color:white;margin-bottom:.6rem;line-height:1.2;}
 .ll-title span{color:var(--gold);}
 .ll-sub{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:2rem;}
-
 .ll-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
 .ll-stat{background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.15);border-radius:12px;padding:1rem;text-align:center;}
 .ll-stat-n{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);line-height:1;}
 .ll-stat-l{font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
-
-/* Right panel — login card */
-.login-right{
-  width:440px;flex-shrink:0;
-  background:white;
-  display:flex;align-items:center;justify-content:center;
-  padding:2.5rem 2.5rem;
-  overflow-y:auto;
-}
+.login-right{width:440px;flex-shrink:0;background:white;display:flex;align-items:center;justify-content:center;padding:2.5rem;overflow-y:auto;}
 .login-card{width:100%;max-width:380px;}
-
 .lc-logo{display:flex;align-items:center;gap:12px;margin-bottom:2rem;}
 .lc-logo-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .lc-logo-text h2{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--navy);line-height:1.2;}
 .lc-logo-text span{font-size:.68rem;color:var(--gray);font-weight:500;letter-spacing:.05em;text-transform:uppercase;}
-
 .lc-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.3rem;line-height:1.25;}
 .lc-sub{color:var(--gray);font-size:.85rem;margin-bottom:1.8rem;line-height:1.6;}
-
-/* login option tabs */
 .login-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1.5rem;background:var(--light);padding:5px;border-radius:10px;}
 .l-tab{padding:9px;border:none;background:transparent;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;}
 .l-tab.active{background:white;color:var(--navy);box-shadow:var(--s1);}
-
 .login-panel{display:none;}
 .login-panel.active{display:block;}
-
 hr.sep{border:none;border-top:1px solid var(--border);margin:1.2rem 0;}
 .sep-label{display:flex;align-items:center;gap:10px;margin:1rem 0;color:var(--gray);font-size:.76rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;}
 .sep-label::before,.sep-label::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* ━━━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━━━ */
+/* ── BUTTONS ── */
 .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px 20px;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;border:none;transition:all .2s ease;}
 .btn-primary{background:var(--navy);color:white;}
 .btn-primary:hover{background:var(--navy2);transform:translateY(-1px);box-shadow:var(--s2);}
@@ -178,7 +89,7 @@ hr.sep{border:none;border-top:1px solid var(--border);margin:1.2rem 0;}
 .g-icon{width:20px;height:20px;flex-shrink:0;}
 .btn-sm{padding:8px 16px;font-size:.83rem;width:auto;}
 
-/* ━━━━━━━━━━━━━━━━━━ FORMS ━━━━━━━━━━━━━━━━━━ */
+/* ── FORMS ── */
 .form-group{margin-bottom:1.1rem;}
 label{display:block;font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:5px;}
 input,select{width:100%;padding:11px 13px;border:2px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.88rem;color:#1a1a1a;background:white;transition:border-color .2s;appearance:none;}
@@ -186,7 +97,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold);}
 .hint{font-size:.76rem;color:var(--gray);margin-top:4px;}
 .emsg{font-size:.79rem;color:var(--red);margin-top:5px;display:none;font-weight:500;}
 
-/* ━━━━━━━━━━━━━━━━━━ TOPBAR ━━━━━━━━━━━━━━━━━━ */
+/* ── TOPBAR ── */
 .topbar{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:var(--s2);position:sticky;top:0;z-index:100;flex-shrink:0;}
 .tb-brand{display:flex;align-items:center;gap:10px;color:white;}
 .tb-icon{font-size:1.2rem;background:var(--gold);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
@@ -200,13 +111,14 @@ input:focus,select:focus{outline:none;border-color:var(--gold);}
 .sign-out{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:5px 13px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;transition:background .2s;}
 .sign-out:hover{background:rgba(255,255,255,.2);}
 .adm-badge{background:var(--gold);color:var(--navy);font-size:.63rem;font-weight:800;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.06em;}
+.back-btn{position:absolute;top:1.2rem;left:1.2rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;transition:background .2s;z-index:10;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
 
-/* ━━━━━━━━━━━━━━━━━━ USER SCREEN ━━━━━━━━━━━━━━━━━━ */
+/* ── USER SCREEN ── */
 #user-screen,#admin-screen{flex-direction:column;background:var(--cream);}
 .user-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;}
 .user-card{background:white;border-radius:20px;padding:2.2rem;max-width:500px;width:100%;box-shadow:var(--s2);animation:fadeUp .4s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-
 .banner{background:linear-gradient(135deg,var(--navy),#2c3e6e);color:white;border-radius:14px;padding:1.4rem;margin-bottom:1.4rem;text-align:center;}
 .banner-h{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:4px;}
 .banner-t{font-size:.8rem;color:rgba(255,255,255,.6);}
@@ -218,36 +130,32 @@ input:focus,select:focus{outline:none;border-color:var(--gold);}
 .det-k{color:var(--gray);font-weight:500;}
 .det-v{font-weight:700;color:var(--navy);text-align:right;max-width:60%;word-break:break-word;}
 
-/* ━━━━━━━━━━━━━━━━━━ MODALS ━━━━━━━━━━━━━━━━━━ */
+/* ── MODALS ── */
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;padding:1rem;}
 .ov.show{display:flex;}
 .modal{background:white;border-radius:20px;padding:2.2rem;max-width:500px;width:100%;max-height:92vh;overflow-y:auto;animation:fadeUp .3s ease;}
 .modal h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);margin-bottom:.2rem;}
 .modal-sub{color:var(--gray);font-size:.83rem;margin-bottom:1.4rem;line-height:1.5;}
-
 .pill{display:flex;align-items:center;gap:10px;background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:40px;padding:8px 14px;margin-bottom:1.2rem;}
 .pill-av{width:28px;height:28px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;font-weight:700;overflow:hidden;flex-shrink:0;}
 .pill-av img{width:28px;height:28px;border-radius:50%;object-fit:cover;}
 .pill-n{font-size:.85rem;font-weight:700;color:var(--navy);}
 .pill-e{font-size:.75rem;color:var(--gray);}
-
-.type-sel{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.1rem;}
+.type-sel{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.1rem;}
 .type-btn{padding:14px 6px;border:2px solid var(--border);border-radius:var(--r);background:white;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif;}
 .type-btn .ti{font-size:1.6rem;display:block;margin-bottom:4px;}
 .type-btn .tn{font-size:.78rem;font-weight:700;color:var(--navy);}
 .type-btn.sel{border-color:var(--gold);background:#fdf8f0;}
-
 .purp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:1.1rem;}
 .purp-chip{padding:9px 12px;border:2px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:500;color:var(--navy);text-align:left;transition:all .2s;display:flex;align-items:center;gap:7px;}
 .purp-chip:hover{border-color:var(--gold);background:#fdf8f0;}
 .purp-chip.sel{border-color:var(--gold);background:var(--gold);color:var(--navy);font-weight:700;}
-
 .suc-wrap{text-align:center;padding:1.5rem 0;}
 .suc-ic{width:72px;height:72px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto .9rem;}
 .suc-wrap h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.4rem;}
 .suc-wrap p{color:var(--gray);font-size:.87rem;margin-bottom:1.3rem;}
 
-/* ━━━━━━━━━━━━━━━━━━ ADMIN DASHBOARD ━━━━━━━━━━━━━━━━━━ */
+/* ── ADMIN ── */
 .adm-wrap{flex:1;padding:1.8rem;max-width:1200px;width:100%;margin:0 auto;}
 .adm-hdr{margin-bottom:1.4rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .adm-hdr h2{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--navy);}
@@ -300,16 +208,18 @@ tbody td{padding:11px 14px;font-size:.86rem;}
 .empty{text-align:center;padding:2.5rem;color:var(--gray);}
 .empty .ei{font-size:2.2rem;margin-bottom:.4rem;}
 
-/* Google loading overlay */
+/* loading overlays */
 .g-loading{display:none;position:fixed;inset:0;background:rgba(26,39,68,.75);z-index:2000;align-items:center;justify-content:center;flex-direction:column;gap:1rem;}
 .g-loading.show{display:flex;}
 .g-spinner{width:44px;height:44px;border:4px solid rgba(200,168,75,.3);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
 .g-loading p{color:white;font-size:.9rem;font-weight:600;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-/* back button on login screen */
-.back-btn{position:absolute;top:1.2rem;left:1.2rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;transition:background .2s;z-index:10;}
-.back-btn:hover{background:rgba(255,255,255,.2);}
+/* setup banner */
+.setup-banner{background:#fef3c7;border:2px solid #f59e0b;border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.4rem;display:flex;gap:10px;align-items:flex-start;}
+.setup-banner .sb-icon{font-size:1.4rem;flex-shrink:0;}
+.setup-banner p{font-size:.83rem;color:#92400e;line-height:1.6;}
+.setup-banner a{color:#92400e;font-weight:700;}
 
 @media(max-width:768px){
   #login-screen{flex-direction:column;}
@@ -319,6 +229,7 @@ tbody td{padding:11px 14px;font-size:.86rem;}
   .filters{flex-direction:column;}
   .stats{grid-template-columns:1fr 1fr;}
   .topbar{padding:0 1rem;}
+  .tb-right .tb-uname,.tb-right .tb-role{display:none;}
 }
 </style>
 </head>
@@ -326,91 +237,61 @@ tbody td{padding:11px 14px;font-size:.86rem;}
 
 <div class="g-loading" id="g-loading">
   <div class="g-spinner"></div>
-  <p>Signing in with Google…</p>
+  <p id="g-loading-msg">Signing in with Google…</p>
 </div>
 
-<!-- ══════════════════════════════════════════
-     SPLASH SCREEN
-══════════════════════════════════════════ -->
+<!-- ══════════ SPLASH ══════════ -->
 <div id="splash-screen" class="screen active" onclick="goToLogin()">
-
-  <!-- animated stars -->
   <div class="stars" id="stars"></div>
   <div class="splash-circle"></div>
   <div class="splash-circle2"></div>
-
-  <!-- Library SVG illustration -->
   <div class="lib-illustration">
     <svg width="260" height="180" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- sky glow -->
       <ellipse cx="130" cy="160" rx="120" ry="20" fill="rgba(200,168,75,0.08)"/>
-      <!-- main building body -->
       <rect x="30" y="70" width="200" height="100" rx="4" fill="#1e3060" stroke="rgba(200,168,75,0.3)" stroke-width="1"/>
-      <!-- roof / pediment -->
       <polygon points="20,70 130,20 240,70" fill="#243360" stroke="rgba(200,168,75,0.4)" stroke-width="1.5"/>
-      <!-- pediment triangle inner -->
       <polygon points="55,70 130,33 205,70" fill="rgba(200,168,75,0.08)" stroke="rgba(200,168,75,0.2)" stroke-width="1"/>
-      <!-- columns -->
       <rect x="50"  y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
       <rect x="80"  y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
       <rect x="112" y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
       <rect x="144" y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
       <rect x="176" y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
       <rect x="198" y="70" width="12" height="100" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.25)" stroke-width="1" rx="2"/>
-      <!-- windows row 1 -->
       <rect x="55"  y="82" width="18" height="24" rx="2" fill="rgba(200,168,75,0.25)" stroke="rgba(200,168,75,0.4)" stroke-width="1"/>
       <rect x="85"  y="82" width="18" height="24" rx="2" fill="rgba(200,168,75,0.18)" stroke="rgba(200,168,75,0.35)" stroke-width="1"/>
       <rect x="155" y="82" width="18" height="24" rx="2" fill="rgba(200,168,75,0.25)" stroke="rgba(200,168,75,0.4)" stroke-width="1"/>
       <rect x="185" y="82" width="18" height="24" rx="2" fill="rgba(200,168,75,0.18)" stroke="rgba(200,168,75,0.35)" stroke-width="1"/>
-      <!-- windows row 2 -->
       <rect x="55"  y="116" width="18" height="22" rx="2" fill="rgba(200,168,75,0.2)" stroke="rgba(200,168,75,0.35)" stroke-width="1"/>
       <rect x="85"  y="116" width="18" height="22" rx="2" fill="rgba(200,168,75,0.28)" stroke="rgba(200,168,75,0.4)" stroke-width="1"/>
       <rect x="155" y="116" width="18" height="22" rx="2" fill="rgba(200,168,75,0.2)" stroke="rgba(200,168,75,0.35)" stroke-width="1"/>
       <rect x="185" y="116" width="18" height="22" rx="2" fill="rgba(200,168,75,0.28)" stroke="rgba(200,168,75,0.4)" stroke-width="1"/>
-      <!-- main door -->
       <rect x="112" y="124" width="36" height="46" rx="3" fill="rgba(200,168,75,0.15)" stroke="rgba(200,168,75,0.5)" stroke-width="1.5"/>
       <path d="M112 130 Q130 115 148 130" fill="none" stroke="rgba(200,168,75,0.5)" stroke-width="1.5"/>
-      <!-- door knob -->
       <circle cx="144" cy="148" r="2" fill="rgba(200,168,75,0.7)"/>
-      <!-- steps -->
-      <rect x="95"  y="168" width="70" height="5"  rx="1" fill="rgba(200,168,75,0.2)"/>
-      <rect x="105" y="163" width="50" height="5"  rx="1" fill="rgba(200,168,75,0.15)"/>
-      <!-- ground line -->
+      <rect x="95"  y="168" width="70" height="5" rx="1" fill="rgba(200,168,75,0.2)"/>
+      <rect x="105" y="163" width="50" height="5" rx="1" fill="rgba(200,168,75,0.15)"/>
       <line x1="10" y1="173" x2="250" y2="173" stroke="rgba(200,168,75,0.2)" stroke-width="1"/>
-      <!-- small trees -->
       <rect x="18" y="140" width="5" height="30" rx="1" fill="rgba(200,168,75,0.2)"/>
       <ellipse cx="20.5" cy="135" rx="12" ry="14" fill="rgba(34,80,60,0.5)" stroke="rgba(200,168,75,0.15)" stroke-width="1"/>
       <rect x="237" y="140" width="5" height="30" rx="1" fill="rgba(200,168,75,0.2)"/>
       <ellipse cx="239.5" cy="135" rx="12" ry="14" fill="rgba(34,80,60,0.5)" stroke="rgba(200,168,75,0.15)" stroke-width="1"/>
-      <!-- NEU flag on top -->
       <line x1="130" y1="10" x2="130" y2="20" stroke="rgba(200,168,75,0.6)" stroke-width="1.5"/>
       <polygon points="130,10 145,14 130,18" fill="rgba(200,168,75,0.5)"/>
-      <!-- light rays from windows -->
-      <rect x="56"  y="83" width="16" height="22" rx="2" fill="rgba(255,240,180,0.08)"/>
-      <rect x="86"  y="83" width="16" height="22" rx="2" fill="rgba(255,240,180,0.05)"/>
     </svg>
   </div>
-
-  <!-- brand text -->
   <div class="splash-brand">
     <div class="splash-neu">New Era <span>University</span></div>
     <div class="splash-sub">Library Management System</div>
     <div class="splash-tagline">"Knowledge is the gateway to excellence."</div>
   </div>
-
-  <!-- CTA -->
   <div class="splash-cta">
     <button class="cta-btn" onclick="event.stopPropagation();goToLogin()">Enter the Library →</button>
     <span class="tap-hint">tap anywhere to continue</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     LOGIN SCREEN
-══════════════════════════════════════════ -->
+<!-- ══════════ LOGIN SCREEN ══════════ -->
 <div id="login-screen" class="screen">
-
-  <!-- Left decorative panel -->
   <div class="login-left">
     <button class="back-btn" onclick="showScreen('splash-screen')">← Back</button>
     <div class="ll-content">
@@ -427,28 +308,20 @@ tbody td{padding:11px 14px;font-size:.86rem;}
       </div>
     </div>
   </div>
-
-  <!-- Right login panel -->
   <div class="login-right">
     <div class="login-card">
       <div class="lc-logo">
         <div class="lc-logo-icon">📚</div>
-        <div class="lc-logo-text">
-          <h2>New Era University</h2>
-          <span>Library Management System</span>
-        </div>
+        <div class="lc-logo-text"><h2>New Era University</h2><span>Library Management System</span></div>
       </div>
-
       <h2 class="lc-title">Welcome Back</h2>
       <p class="lc-sub">Choose how you'd like to sign in to log your library visit today.</p>
-
-      <!-- Tabs: NEU Member | Walk-in Visitor -->
       <div class="login-tabs">
         <button class="l-tab active" onclick="switchTab('neu')">🎓 NEU Member</button>
         <button class="l-tab" onclick="switchTab('walkin')">🚶 Walk-in Visitor</button>
       </div>
 
-      <!-- NEU Member panel -->
+      <!-- NEU Member -->
       <div class="login-panel active" id="panel-neu">
         <button class="btn btn-google" onclick="triggerGoogle()">
           <svg class="g-icon" viewBox="0 0 24 24">
@@ -459,13 +332,10 @@ tbody td{padding:11px 14px;font-size:.86rem;}
           </svg>
           Sign in with Google
         </button>
-        <p style="font-size:.76rem;color:var(--gray);text-align:center;margin-top:.8rem;line-height:1.6">
-          Use your <strong>@neu.edu.ph</strong> Google account.<br>
-          Admins are redirected automatically.
-        </p>
+        <p style="font-size:.76rem;color:var(--gray);text-align:center;margin-top:.8rem;line-height:1.6">Use your <strong>@neu.edu.ph</strong> Google account.<br>Admins are redirected automatically.</p>
       </div>
 
-      <!-- Walk-in Visitor panel -->
+      <!-- Walk-in Visitor -->
       <div class="login-panel" id="panel-walkin">
         <div class="form-group">
           <label>Your Full Name <span style="color:var(--red)">*</span></label>
@@ -492,34 +362,39 @@ tbody td{padding:11px 14px;font-size:.86rem;}
         </div>
         <button class="btn btn-gold" onclick="submitWalkIn()">Log My Visit ✓</button>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     VISITOR REGISTRATION MODAL (NEU members)
-══════════════════════════════════════════ -->
+<!-- ══════════ ADMIN ROLE CHOICE ══════════ -->
+<div class="ov" id="role-modal">
+  <div class="modal" style="max-width:420px;text-align:center">
+    <div style="font-size:2.2rem;margin-bottom:.8rem">👋</div>
+    <h2 style="margin-bottom:.3rem" id="role-modal-name">Welcome!</h2>
+    <p style="color:var(--gray);font-size:.85rem;margin-bottom:1.6rem;line-height:1.6">Your account has <strong>admin access</strong>.<br>How would you like to continue today?</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn btn-gold" onclick="goAdmin()">🛡️ Open Admin Dashboard</button>
+      <button class="btn btn-outline" onclick="goRegularUser()">🎓 Log a Visit as Regular User</button>
+    </div>
+    <p style="font-size:.75rem;color:var(--gray);margin-top:1rem">You can switch anytime by signing out and back in.</p>
+  </div>
+</div>
+
+<!-- ══════════ NEU MEMBER REGISTRATION ══════════ -->
 <div class="ov" id="reg-modal">
   <div class="modal">
     <h2>Log Your Library Visit</h2>
     <div class="pill">
       <div class="pill-av" id="pill-av">?</div>
-      <div>
-        <div class="pill-n" id="pill-n">—</div>
-        <div class="pill-e" id="pill-e">—</div>
-      </div>
+      <div><div class="pill-n" id="pill-n">—</div><div class="pill-e" id="pill-e">—</div></div>
     </div>
-
     <div class="form-group">
       <label>I am a…</label>
       <div class="type-sel">
         <button class="type-btn sel" id="t-student" onclick="selType('student')"><span class="ti">🎓</span><span class="tn">Student</span></button>
-        <button class="type-btn"     id="t-faculty" onclick="selType('faculty')"><span class="ti">👨‍🏫</span><span class="tn">Faculty</span></button>
-        <button class="type-btn"     id="t-visitor" onclick="selType('visitor')"><span class="ti">🙋</span><span class="tn">Visitor</span></button>
+        <button class="type-btn"     id="t-faculty" onclick="selType('faculty')"><span class="ti">👨‍🏫</span><span class="tn">Faculty / Staff</span></button>
       </div>
     </div>
-
     <div id="f-student">
       <div class="form-group">
         <label>Course</label>
@@ -565,7 +440,6 @@ tbody td{padding:11px 14px;font-size:.86rem;}
         <div class="emsg" id="e-sid">Please enter your Student ID number.</div>
       </div>
     </div>
-
     <div id="f-faculty" style="display:none">
       <div class="form-group">
         <label>Full Name</label>
@@ -576,14 +450,6 @@ tbody td{padding:11px 14px;font-size:.86rem;}
         <input type="text" id="f-dept" placeholder="e.g. College of IT">
       </div>
     </div>
-
-    <div id="f-visitor" style="display:none">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="v-name" placeholder="Your full name">
-      </div>
-    </div>
-
     <div class="form-group">
       <label>Purpose of Visit</label>
       <div class="purp-grid">
@@ -598,35 +464,12 @@ tbody td{padding:11px 14px;font-size:.86rem;}
       </div>
       <div class="emsg" id="e-purp">Please select a purpose.</div>
     </div>
-
     <button class="btn btn-gold" onclick="submitLog()" style="margin-bottom:8px">Log My Visit ✓</button>
     <button class="btn btn-outline" onclick="closeModal('reg-modal')">Cancel</button>
   </div>
 </div>
 
-<!-- ADMIN ROLE CHOICE MODAL -->
-<div class="ov" id="role-modal">
-  <div class="modal" style="max-width:420px;text-align:center">
-    <div style="font-size:2.2rem;margin-bottom:.8rem">👋</div>
-    <h2 style="margin-bottom:.3rem" id="role-modal-name">Welcome!</h2>
-    <p style="color:var(--gray);font-size:.85rem;margin-bottom:1.6rem;line-height:1.6">
-      Your account has <strong>admin access</strong>.<br>How would you like to continue today?
-    </p>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <button class="btn btn-gold" onclick="goAdmin()">
-        🛡️ Open Admin Dashboard
-      </button>
-      <button class="btn btn-outline" onclick="goRegularUser()">
-        🎓 Log a Visit as Regular User
-      </button>
-    </div>
-    <p style="font-size:.75rem;color:var(--gray);margin-top:1rem">
-      You can switch anytime by signing out and back in.
-    </p>
-  </div>
-</div>
-
-<!-- SUCCESS MODAL -->
+<!-- ══════════ SUCCESS ══════════ -->
 <div class="ov" id="suc-modal">
   <div class="modal" style="max-width:400px">
     <div class="suc-wrap">
@@ -639,20 +482,12 @@ tbody td{padding:11px 14px;font-size:.86rem;}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     USER SCREEN
-══════════════════════════════════════════ -->
+<!-- ══════════ USER SCREEN ══════════ -->
 <div id="user-screen" class="screen">
   <div class="topbar">
-    <div class="tb-brand">
-      <div class="tb-icon">📚</div>
-      <div><div class="tb-name">NEU Library</div><div class="tb-sub">Visitor Log</div></div>
-    </div>
+    <div class="tb-brand"><div class="tb-icon">📚</div><div><div class="tb-name">NEU Library</div><div class="tb-sub">Visitor Log</div></div></div>
     <div class="tb-right">
-      <div>
-        <div class="tb-uname" id="u-name">—</div>
-        <div class="tb-role"  id="u-role">—</div>
-      </div>
+      <div><div class="tb-uname" id="u-name">—</div><div class="tb-role" id="u-role">—</div></div>
       <div class="tb-av" id="u-av"><span id="u-avl">U</span></div>
       <button class="sign-out" onclick="logout()">Sign Out</button>
     </div>
@@ -662,7 +497,7 @@ tbody td{padding:11px 14px;font-size:.86rem;}
       <div class="banner">
         <div class="banner-h">Welcome to NEU Library! 🎉</div>
         <div class="banner-t" id="u-time"></div>
-        <span class="badge" id="u-badge">Visitor</span>
+        <span class="badge" id="u-badge">Student</span>
       </div>
       <h3 class="sec-h">Your Visit Summary</h3>
       <div class="det" id="u-summary"></div>
@@ -671,30 +506,29 @@ tbody td{padding:11px 14px;font-size:.86rem;}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     ADMIN SCREEN
-══════════════════════════════════════════ -->
+<!-- ══════════ ADMIN SCREEN ══════════ -->
 <div id="admin-screen" class="screen">
   <div class="topbar">
-    <div class="tb-brand">
-      <div class="tb-icon">📚</div>
-      <div><div class="tb-name">NEU Library</div><div class="tb-sub">Admin Dashboard</div></div>
-    </div>
+    <div class="tb-brand"><div class="tb-icon">📚</div><div><div class="tb-name">NEU Library</div><div class="tb-sub">Admin Dashboard</div></div></div>
     <div class="tb-right">
-      <div>
-        <div class="tb-uname" id="a-name">—</div>
-        <div class="tb-role">Administrator</div>
-      </div>
+      <div><div class="tb-uname" id="a-name">—</div><div class="tb-role">Administrator</div></div>
       <div class="tb-av" id="a-av">AD</div>
       <span class="adm-badge">Admin</span>
-      <button class="sign-out" style="background:rgba(200,168,75,0.15);border-color:rgba(200,168,75,0.4)" onclick="openRegModal();showModal('reg-modal')">📝 Log a Visit</button>
+      <button class="sign-out" style="background:rgba(200,168,75,.15);border-color:rgba(200,168,75,.4)" onclick="openRegModal()">📝 Log a Visit</button>
       <button class="sign-out" onclick="logout()">Sign Out</button>
     </div>
   </div>
   <div class="adm-wrap">
+    <div id="setup-warn" class="setup-banner" style="display:none">
+      <div class="sb-icon">⚠️</div>
+      <p><strong>Google Sheet not connected yet.</strong> Records are being saved locally only (this device). To enable shared records across all devices, follow the <strong>Setup Guide</strong> in the README or ask your teacher to complete the Google Sheets setup. <a href="#" onclick="document.getElementById('setup-warn').style.display='none'">Dismiss</a></p>
+    </div>
     <div class="adm-hdr">
       <div><h2>Library Visitor Dashboard</h2><p id="a-date"></p></div>
-      <button class="btn btn-gold btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="loadFromSheet()" id="refresh-btn">🔄 Refresh</button>
+        <button class="btn btn-gold btn-sm" onclick="exportCSV()">⬇️ Export CSV</button>
+      </div>
     </div>
     <div class="ptabs">
       <button class="ptab active" onclick="setPeriod('today',this)">Today</button>
@@ -712,14 +546,13 @@ tbody td{padding:11px 14px;font-size:.86rem;}
     <div class="stats">
       <div class="stat nv"><div class="stat-l">Total Visitors</div><div class="stat-v" id="s-total">0</div><div class="stat-s">in selected period</div></div>
       <div class="stat">   <div class="stat-l">Students</div>      <div class="stat-v" id="s-stu">0</div>  <div class="stat-s">logged visits</div></div>
-      <div class="stat gn"><div class="stat-l">Faculty</div>       <div class="stat-v" id="s-fac">0</div>  <div class="stat-s">logged visits</div></div>
+      <div class="stat gn"><div class="stat-l">Faculty / Staff</div><div class="stat-v" id="s-fac">0</div><div class="stat-s">logged visits</div></div>
       <div class="stat rd"><div class="stat-l">Walk-in Visitors</div><div class="stat-v" id="s-vis">0</div><div class="stat-s">no NEU account</div></div>
       <div class="stat">   <div class="stat-l">Top Purpose</div>   <div class="stat-v" id="s-top" style="font-size:1rem;padding-top:6px">—</div><div class="stat-s">most common</div></div>
     </div>
     <div class="purp-bd"><h3>Purpose Breakdown</h3><div id="pb-bars"></div></div>
     <div class="filters">
-      <div class="fg">
-        <label>Purpose</label>
+      <div class="fg"><label>Purpose</label>
         <select id="f-purp" onchange="renderTable()">
           <option value="">All Purposes</option>
           <option>Reading</option><option>Research</option><option>Computer Use</option>
@@ -727,17 +560,15 @@ tbody td{padding:11px 14px;font-size:.86rem;}
           <option>Printing</option><option>Other</option>
         </select>
       </div>
-      <div class="fg">
-        <label>Role</label>
+      <div class="fg"><label>Role</label>
         <select id="f-role" onchange="renderTable()">
           <option value="">All Roles</option>
           <option value="Student">Students</option>
-          <option value="Faculty">Faculty</option>
-          <option value="Visitor">Visitors</option>
+          <option value="Faculty">Faculty / Staff</option>
+          <option value="Visitor">Walk-in Visitors</option>
         </select>
       </div>
-      <div class="fg">
-        <label>Course / Dept</label>
+      <div class="fg"><label>Course / Dept</label>
         <input type="text" id="f-course" placeholder="e.g. BSIT" oninput="renderTable()">
       </div>
     </div>
@@ -749,143 +580,156 @@ tbody td{padding:11px 14px;font-size:.86rem;}
       <button class="btn btn-outline btn-sm" onclick="clearSearch()">Clear</button>
     </div>
     <div class="tbl-wrap">
-      <div class="tbl-hd">
-        <h3>Visitor Records</h3>
-        <span class="rec-cnt" id="rec-cnt">0 records</span>
-      </div>
+      <div class="tbl-hd"><h3>Visitor Records</h3><span class="rec-cnt" id="rec-cnt">0 records</span></div>
       <div class="tbl-sc">
         <table>
-          <thead>
-            <tr><th>#</th><th>Date &amp; Time</th><th>Name / ID</th><th>Contact</th><th>Role</th><th>Course / Dept</th><th>Purpose</th></tr>
-          </thead>
+          <thead><tr><th>#</th><th>Date &amp; Time</th><th>Name / ID</th><th>Contact / Email</th><th>Role</th><th>Course / Dept</th><th>Purpose</th></tr></thead>
           <tbody id="tbl-body"></tbody>
         </table>
       </div>
-      <div id="tbl-empty" class="empty" style="display:none">
-        <div class="ei">📋</div>
-        <p>No records found for the selected filters.</p>
-      </div>
+      <div id="tbl-empty" class="empty" style="display:none"><div class="ei">📋</div><p>No records found.</p></div>
     </div>
   </div>
 </div>
 
 <script>
-// ─────────────────────────────────────────────────────
-//  CONFIG
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+//  ⚙️  CONFIGURATION
+//  After completing the Google Sheets setup (see README),
+//  paste your Web App URL below.
+// ═══════════════════════════════════════════════════
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxtsD2rETzayjdXeFSi1vO3yMi4I1biX33aMpLuaZq-3gQGjSJVg__ZNQ1fqSEDEMLE/exec';
+
 const ADMIN_EMAILS = [
   'jcesperanza@neu.edu.ph',
   'jovinlowell.dula@neu.edu.ph'
 ];
 const CLIENT_ID = '185344207310-odaitu3ng2agdu1mf6a8jp3fh649e7me.apps.googleusercontent.com';
 
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 //  STATE
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 let gUser      = null;
 let curType    = 'student';
 let curPurpose = '';
 let wiPurpose  = '';
 let curPeriod  = 'today';
 let rangeFrom  = null, rangeTo = null;
+let allRecords = [];  // loaded from Sheet or localStorage fallback
 
-// ─────────────────────────────────────────────────────
-//  STORAGE
-// ─────────────────────────────────────────────────────
-function getRecs()    { try{ return JSON.parse(localStorage.getItem('neu_lib_v3')||'[]'); }catch{ return []; } }
-function saveRecs(a)  { localStorage.setItem('neu_lib_v3', JSON.stringify(a)); }
+const sheetReady = () => SHEET_URL && !SHEET_URL.startsWith('YOUR_');
 
-// ─────────────────────────────────────────────────────
-//  SPLASH stars
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+//  LOCAL FALLBACK STORAGE
+// ═══════════════════════════════════════════════════
+function getLocal()    { try{return JSON.parse(localStorage.getItem('neu_lib_v3')||'[]');}catch{return[];} }
+function saveLocal(a)  { localStorage.setItem('neu_lib_v3',JSON.stringify(a)); }
+
+// ═══════════════════════════════════════════════════
+//  SPLASH STARS
+// ═══════════════════════════════════════════════════
 (function makeStars(){
   const c=document.getElementById('stars');
   for(let i=0;i<60;i++){
-    const s=document.createElement('div');
-    s.className='star';
+    const s=document.createElement('div'); s.className='star';
     const sz=Math.random()*3+1;
-    Object.assign(s.style,{
-      width:sz+'px',height:sz+'px',
-      left:Math.random()*100+'%',top:Math.random()*100+'%',
-      animationDelay:Math.random()*4+'s',
-      animationDuration:(2+Math.random()*3)+'s'
-    });
+    Object.assign(s.style,{width:sz+'px',height:sz+'px',left:Math.random()*100+'%',top:Math.random()*100+'%',animationDelay:Math.random()*4+'s',animationDuration:(2+Math.random()*3)+'s'});
     c.appendChild(s);
   }
 })();
 
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 //  NAVIGATION
-// ─────────────────────────────────────────────────────
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+// ═══════════════════════════════════════════════════
+function showScreen(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 function showModal(id)  { document.getElementById(id).classList.add('show'); }
 function closeModal(id) { document.getElementById(id).classList.remove('show'); }
 function showErr(id)    { document.getElementById(id).style.display='block'; }
 function hideErr(id)    { document.getElementById(id).style.display='none'; }
-function showLoading()  { document.getElementById('g-loading').classList.add('show'); }
+function showLoading(msg){ document.getElementById('g-loading-msg').textContent=msg||'Please wait…'; document.getElementById('g-loading').classList.add('show'); }
 function hideLoading()  { document.getElementById('g-loading').classList.remove('show'); }
 
 function goToLogin(){
   updateLoginStats();
   showScreen('login-screen');
 }
+function logout(){ gUser=null; showScreen('splash-screen'); }
+function goLogAnother(){ if(gUser){ openRegModal(); }else{ showScreen('login-screen'); switchTab('walkin'); } }
 
-function logout(){
-  gUser=null;
-  showScreen('splash-screen');
+// ═══════════════════════════════════════════════════
+//  LOGIN TABS
+// ═══════════════════════════════════════════════════
+function switchTab(tab){
+  document.querySelectorAll('.l-tab').forEach((b,i)=>b.classList.toggle('active',(tab==='neu'&&i===0)||(tab==='walkin'&&i===1)));
+  document.getElementById('panel-neu').classList.toggle('active',tab==='neu');
+  document.getElementById('panel-walkin').classList.toggle('active',tab==='walkin');
 }
 
-function goLogAnother(){
-  if(gUser){
-    openRegModal();
-  } else {
-    showScreen('login-screen');
-    switchTab('walkin');
+// ═══════════════════════════════════════════════════
+//  LIVE STATS on login panel
+// ═══════════════════════════════════════════════════
+function updateLoginStats(){
+  const all = sheetReady() ? allRecords : getLocal();
+  const now = new Date();
+  const today = all.filter(r=>new Date(r.timestamp).toDateString()===now.toDateString());
+  document.getElementById('stat-today-count').textContent = today.length;
+  document.getElementById('stat-total-count').textContent = all.length;
+}
+
+// ═══════════════════════════════════════════════════
+//  GOOGLE SHEETS API
+// ═══════════════════════════════════════════════════
+async function sendToSheet(record){
+  if(!sheetReady()){ saveLocal([...getLocal(), record]); allRecords=[...allRecords, record]; return true; }
+  try{
+    const res = await fetch(SHEET_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'add', record})
+    });
+    const data = await res.json();
+    return data.success;
+  }catch(e){
+    // fallback to local if network fails
+    saveLocal([...getLocal(), record]);
+    allRecords=[...allRecords, record];
+    return true;
   }
 }
 
-// ─────────────────────────────────────────────────────
-//  LOGIN TABS
-// ─────────────────────────────────────────────────────
-function switchTab(tab){
-  document.querySelectorAll('.l-tab').forEach((b,i)=>{
-    b.classList.toggle('active', (tab==='neu'&&i===0)||(tab==='walkin'&&i===1));
-  });
-  document.getElementById('panel-neu').classList.toggle('active', tab==='neu');
-  document.getElementById('panel-walkin').classList.toggle('active', tab==='walkin');
+async function loadFromSheet(){
+  if(!sheetReady()){ allRecords=getLocal(); renderDashboard(); return; }
+  showLoading('Loading records…');
+  try{
+    const res = await fetch(SHEET_URL+'?action=get');
+    const data = await res.json();
+    allRecords = data.records || [];
+    // also merge any offline local records not yet synced
+    const local = getLocal();
+    const sheetIds = new Set(allRecords.map(r=>r.id));
+    const unsynced = local.filter(r=>!sheetIds.has(r.id));
+    if(unsynced.length){ for(const r of unsynced) await sendToSheet(r); saveLocal([]); }
+  }catch(e){
+    allRecords = getLocal();
+    document.getElementById('setup-warn').style.display='flex';
+  }
+  hideLoading();
+  renderDashboard();
 }
 
-// ─────────────────────────────────────────────────────
-//  LIVE STATS on login panel
-// ─────────────────────────────────────────────────────
-function updateLoginStats(){
-  const all=getRecs();
-  const now=new Date();
-  const today=all.filter(r=>new Date(r.timestamp).toDateString()===now.toDateString());
-  document.getElementById('stat-today-count').textContent=today.length;
-  document.getElementById('stat-total-count').textContent=all.length;
-}
-
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 //  GOOGLE SIGN-IN
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 function triggerGoogle(){
-  showLoading();
+  showLoading('Signing in with Google…');
   try{
     const client=google.accounts.oauth2.initTokenClient({
-      client_id:CLIENT_ID,
-      scope:'email profile openid',
+      client_id:CLIENT_ID, scope:'email profile openid',
       callback:onToken,
       error_callback:()=>{hideLoading();alert('Google Sign-In failed. Please try again.');}
     });
     client.requestAccessToken({prompt:'select_account'});
-  }catch(e){
-    hideLoading();
-    alert('Google Sign-In could not start. Check your internet connection.');
-  }
+  }catch(e){hideLoading();alert('Google Sign-In could not start. Check your internet connection.');}
 }
 
 function onToken(tok){
@@ -904,7 +748,6 @@ function onUser(user){
   }
   gUser=user;
   if(ADMIN_EMAILS.includes(email)){
-    // Show choice: admin dashboard OR regular user
     const firstName=(user.name||email).split(' ')[0];
     document.getElementById('role-modal-name').textContent='Welcome, '+firstName+'!';
     showModal('role-modal');
@@ -921,94 +764,56 @@ function goAdmin(){
   const aAv=document.getElementById('a-av');
   aAv.innerHTML=gUser.picture?`<img src="${gUser.picture}" alt="">`:'';
   if(!gUser.picture) aAv.textContent=initials;
-  document.getElementById('a-date').textContent=
-    'Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  renderDashboard();
+  document.getElementById('a-date').textContent='Real-time visitor logs · '+new Date().toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  if(!sheetReady()) document.getElementById('setup-warn').style.display='flex';
+  loadFromSheet();
   showScreen('admin-screen');
 }
 
-function goRegularUser(){
-  closeModal('role-modal');
-  openRegModal();
-}
+function goRegularUser(){ closeModal('role-modal'); openRegModal(); }
 
-// ─────────────────────────────────────────────────────
-//  WALK-IN VISITOR (no email needed)
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+//  WALK-IN VISITOR
+// ═══════════════════════════════════════════════════
 function selWiPurp(el){
   document.querySelectorAll('#wi-purp-grid .purp-chip').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  wiPurpose=el.dataset.p;
-  hideErr('e-wipurp');
+  el.classList.add('sel'); wiPurpose=el.dataset.p; hideErr('e-wipurp');
 }
 
-function submitWalkIn(){
+async function submitWalkIn(){
   const name=document.getElementById('wi-name').value.trim();
-  if(!name){showErr('e-winame');return;}
-  hideErr('e-winame');
-  if(!wiPurpose){showErr('e-wipurp');return;}
-  hideErr('e-wipurp');
-
+  if(!name){showErr('e-winame');return;} hideErr('e-winame');
+  if(!wiPurpose){showErr('e-wipurp');return;} hideErr('e-wipurp');
   const contact=document.getElementById('wi-contact').value.trim();
-  const rec={
-    id:Date.now().toString(),
-    timestamp:new Date().toISOString(),
-    email:'—',
-    name,
-    contact:contact||'—',
-    picture:'',
-    sid:'',role:'Visitor',course:'',dept:'',
-    purpose:wiPurpose
-  };
-  const arr=getRecs(); arr.push(rec); saveRecs(arr);
-
-  // set user screen
-  document.getElementById('u-name').textContent=name;
-  document.getElementById('u-role').textContent='Walk-in Visitor';
-  document.getElementById('u-badge').textContent='Visitor';
-  document.getElementById('u-time').textContent=new Date().toLocaleString('en-PH');
-  const uAv=document.getElementById('u-av');
-  uAv.innerHTML=''; uAv.textContent=name[0].toUpperCase();
-
-  document.getElementById('u-summary').innerHTML=mkRows({
-    'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),
-    'Name':rec.name,
-    ...(contact?{'Contact':contact}:{}),
-    'Role':'Walk-in Visitor',
-    'Purpose':rec.purpose
-  });
-
-  document.getElementById('suc-det').innerHTML=mkRows({
-    'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),
-    'Name':rec.name,
-    'Role':'Walk-in Visitor',
-    'Purpose':rec.purpose
-  });
-
+  const rec={id:Date.now().toString(),timestamp:new Date().toISOString(),email:'—',name,contact:contact||'',picture:'',sid:'',role:'Visitor',course:'',dept:'',purpose:wiPurpose};
+  showLoading('Saving your visit…');
+  await sendToSheet(rec);
+  hideLoading();
+  setUserScreen(name,'Walk-in Visitor','Visitor',rec);
+  document.getElementById('suc-det').innerHTML=mkRows({'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),'Name':rec.name,'Role':'Walk-in Visitor','Purpose':rec.purpose});
   showModal('suc-modal');
 }
 
-// ─────────────────────────────────────────────────────
-//  NEU MEMBER REGISTRATION MODAL
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+//  NEU MEMBER REGISTRATION
+// ═══════════════════════════════════════════════════
 function openRegModal(){
   selType('student');
   document.querySelectorAll('#reg-modal .purp-chip').forEach(c=>c.classList.remove('sel'));
   curPurpose='';
-  ['s-id','s-course','f-name','f-dept','v-name'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['s-id','s-course','f-name','f-dept'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   hideErr('e-sid');hideErr('e-purp');
-
   document.getElementById('pill-e').textContent=gUser.email;
   document.getElementById('pill-n').textContent=gUser.name||gUser.email.split('@')[0];
   const av=document.getElementById('pill-av');
-  if(gUser.picture){ av.innerHTML=`<img src="${gUser.picture}" alt="">`; }
-  else{ av.innerHTML=''; av.textContent=(gUser.name||gUser.email)[0].toUpperCase(); }
+  if(gUser.picture){av.innerHTML=`<img src="${gUser.picture}" alt="">`;}
+  else{av.innerHTML='';av.textContent=(gUser.name||gUser.email)[0].toUpperCase();}
   showModal('reg-modal');
 }
 
 function selType(t){
   curType=t;
-  ['student','faculty','visitor'].forEach(x=>{
+  ['student','faculty'].forEach(x=>{
     document.getElementById('t-'+x).classList.toggle('sel',x===t);
     document.getElementById('f-'+x).style.display=x===t?'block':'none';
   });
@@ -1016,70 +821,57 @@ function selType(t){
 
 function selPurp(el){
   document.querySelectorAll('#reg-modal .purp-chip').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  curPurpose=el.dataset.p;
-  hideErr('e-purp');
+  el.classList.add('sel'); curPurpose=el.dataset.p; hideErr('e-purp');
 }
 
-function submitLog(){
+async function submitLog(){
   if(!curPurpose){showErr('e-purp');return;}
   let name='',sid='',course='',dept='';
   if(curType==='student'){
     sid=document.getElementById('s-id').value.trim();
     course=document.getElementById('s-course').value;
-    if(!sid){showErr('e-sid');return;}
-    hideErr('e-sid');
-  }else if(curType==='faculty'){
+    if(!sid){showErr('e-sid');return;} hideErr('e-sid');
+  }else{
     name=document.getElementById('f-name').value.trim()||gUser.name||'Faculty Member';
     dept=document.getElementById('f-dept').value.trim()||'NEU';
-  }else{
-    name=document.getElementById('v-name').value.trim()||'Visitor';
   }
-  const role=curType==='student'?'Student':curType==='faculty'?'Faculty':'Visitor';
-  const rec={
-    id:Date.now().toString(),timestamp:new Date().toISOString(),
-    email:gUser.email,name:name||gUser.name||'',contact:'',
-    picture:gUser.picture||'',sid,role,course,dept,purpose:curPurpose
-  };
-  const arr=getRecs();arr.push(rec);saveRecs(arr);
-
+  const role=curType==='student'?'Student':'Faculty';
+  const rec={id:Date.now().toString(),timestamp:new Date().toISOString(),email:gUser.email,name:name||gUser.name||'',contact:'',picture:gUser.picture||'',sid,role,course,dept,purpose:curPurpose};
+  showLoading('Saving your visit…');
+  await sendToSheet(rec);
+  hideLoading();
   const disp=sid||gUser.name||gUser.email.split('@')[0];
-  document.getElementById('u-name').textContent=disp;
-  document.getElementById('u-role').textContent=role;
-  document.getElementById('u-badge').textContent=role;
-  document.getElementById('u-time').textContent=new Date().toLocaleString('en-PH');
-  const uAv=document.getElementById('u-av');
-  uAv.innerHTML=gUser.picture?`<img src="${gUser.picture}" alt="">`:'';
-  if(!gUser.picture) uAv.textContent=disp[0].toUpperCase();
-
-  document.getElementById('u-summary').innerHTML=mkRows({
-    'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),
-    'Email':rec.email,
-    ...(rec.sid?{'Student ID':rec.sid}:{}),
-    ...(rec.name&&!rec.sid?{'Name':rec.name}:{}),
-    ...(rec.course?{'Course':rec.course}:{}),
-    ...(rec.dept?{'Department':rec.dept}:{}),
-    'Purpose':rec.purpose
-  });
-  document.getElementById('suc-det').innerHTML=mkRows({
-    'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),
-    'Role':rec.role,
-    ...(rec.sid?{'Student ID':rec.sid}:{}),
-    'Purpose':rec.purpose
-  });
+  setUserScreen(disp,role,role,rec);
+  document.getElementById('suc-det').innerHTML=mkRows({'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),'Role':rec.role,...(rec.sid?{'Student ID':rec.sid}:{}),'Purpose':rec.purpose});
   closeModal('reg-modal');
   showModal('suc-modal');
 }
 
-function mkRows(obj){
-  return Object.entries(obj).map(([k,v])=>
-    `<div class="det-r"><span class="det-k">${k}</span><span class="det-v">${v}</span></div>`
-  ).join('');
+function setUserScreen(dispName,roleText,badgeText,rec){
+  document.getElementById('u-name').textContent=dispName;
+  document.getElementById('u-role').textContent=roleText;
+  document.getElementById('u-badge').textContent=badgeText;
+  document.getElementById('u-time').textContent=new Date().toLocaleString('en-PH');
+  const uAv=document.getElementById('u-av');
+  uAv.innerHTML=(gUser&&gUser.picture)?`<img src="${gUser.picture}" alt="">`:'';
+  if(!(gUser&&gUser.picture)) uAv.textContent=dispName[0].toUpperCase();
+  document.getElementById('u-summary').innerHTML=mkRows({
+    'Date & Time':new Date(rec.timestamp).toLocaleString('en-PH'),
+    ...(rec.email&&rec.email!=='—'?{'Email':rec.email}:{}),
+    ...(rec.name&&!rec.sid?{'Name':rec.name}:{}),
+    ...(rec.sid?{'Student ID':rec.sid}:{}),
+    ...(rec.course?{'Course':rec.course}:{}),
+    ...(rec.dept?{'Department':rec.dept}:{}),
+    ...(rec.contact?{'Contact':rec.contact}:{}),
+    'Purpose':rec.purpose
+  });
 }
 
-// ─────────────────────────────────────────────────────
+function mkRows(obj){ return Object.entries(obj).map(([k,v])=>`<div class="det-r"><span class="det-k">${k}</span><span class="det-v">${v}</span></div>`).join(''); }
+
+// ═══════════════════════════════════════════════════
 //  ADMIN DASHBOARD
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 function setPeriod(p,btn){
   curPeriod=p;
   document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
@@ -1087,7 +879,7 @@ function setPeriod(p,btn){
   document.getElementById('drange').classList.toggle('show',p==='custom');
   if(p!=='custom') renderDashboard();
 }
-function applyRange(){rangeFrom=document.getElementById('d-from').value;rangeTo=document.getElementById('d-to').value;renderDashboard();}
+function applyRange(){ rangeFrom=document.getElementById('d-from').value; rangeTo=document.getElementById('d-to').value; renderDashboard(); }
 
 function byPeriod(recs){
   const now=new Date();
@@ -1103,7 +895,7 @@ function byPeriod(recs){
 }
 
 function renderDashboard(){
-  const f=byPeriod(getRecs());
+  const f=byPeriod(allRecords);
   document.getElementById('s-total').textContent=f.length;
   document.getElementById('s-stu').textContent=f.filter(r=>r.role==='Student').length;
   document.getElementById('s-fac').textContent=f.filter(r=>r.role==='Faculty').length;
@@ -1119,7 +911,7 @@ function renderDashboard(){
 }
 
 function renderTable(){
-  let f=byPeriod(getRecs());
+  let f=byPeriod(allRecords);
   const s=document.getElementById('srch-bar').value.trim().toLowerCase();
   const fp=document.getElementById('f-purp').value;
   const fr=document.getElementById('f-role').value;
@@ -1127,8 +919,7 @@ function renderTable(){
   if(fp) f=f.filter(r=>r.purpose===fp);
   if(fr) f=f.filter(r=>r.role===fr);
   if(fc) f=f.filter(r=>(r.course||'').toLowerCase().includes(fc)||(r.dept||'').toLowerCase().includes(fc));
-  if(s)  f=f.filter(r=>[r.email,r.name,r.sid,r.role,r.course,r.dept,r.purpose,r.contact,
-    new Date(r.timestamp).toLocaleString('en-PH')].some(x=>(x||'').toLowerCase().includes(s)));
+  if(s)  f=f.filter(r=>[r.email,r.name,r.sid,r.role,r.course,r.dept,r.purpose,r.contact,new Date(r.timestamp).toLocaleString('en-PH')].some(x=>(x||'').toLowerCase().includes(s)));
   f.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
   document.getElementById('rec-cnt').textContent=f.length+' record'+(f.length!==1?'s':'');
   if(!f.length){document.getElementById('tbl-body').innerHTML='';document.getElementById('tbl-empty').style.display='block';return;}
@@ -1137,16 +928,8 @@ function renderTable(){
     const dt=new Date(r.timestamp);
     const rc=r.role==='Student'?'rs':r.role==='Faculty'?'rf':'rv';
     const who=r.sid?`<strong>${r.sid}</strong><br><small style="color:var(--gray)">${r.email}</small>`:(r.name||r.email);
-    const contact=r.contact&&r.contact!=='—'?r.contact:(r.email&&r.email!=='—'?`<span style="color:var(--gray);font-size:.78rem">${r.email}</span>`:'—');
-    return `<tr>
-      <td>${i+1}</td>
-      <td><div style="font-weight:700;font-size:.8rem">${dt.toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})}</div><div style="color:var(--gray);font-size:.76rem">${dt.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit'})}</div></td>
-      <td>${who}</td>
-      <td style="font-size:.8rem">${contact}</td>
-      <td><span class="r-tag ${rc}">${r.role}</span></td>
-      <td style="font-size:.8rem">${r.course||r.dept||'—'}</td>
-      <td><span class="p-tag">${r.purpose}</span></td>
-    </tr>`;
+    const contact=r.contact?r.contact:(r.email&&r.email!=='—'?`<span style="color:var(--gray);font-size:.78rem">${r.email}</span>`:'—');
+    return `<tr><td>${i+1}</td><td><div style="font-weight:700;font-size:.8rem">${dt.toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})}</div><div style="color:var(--gray);font-size:.76rem">${dt.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit'})}</div></td><td>${who}</td><td style="font-size:.8rem">${contact}</td><td><span class="r-tag ${rc}">${r.role}</span></td><td style="font-size:.8rem">${r.course||r.dept||'—'}</td><td><span class="p-tag">${r.purpose}</span></td></tr>`;
   }).join('');
 }
 
@@ -1156,23 +939,18 @@ function clearSearch(){
 }
 
 function exportCSV(){
-  const f=byPeriod(getRecs()).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
-  const hdr=['#','Date','Time','Name','Email / Contact','Student ID','Role','Course/Dept','Purpose'];
-  const csv=[hdr,...f.map((r,i)=>{
-    const dt=new Date(r.timestamp);
-    return[i+1,dt.toLocaleDateString('en-PH'),dt.toLocaleTimeString('en-PH'),
-      r.name||'',r.email!=='—'?r.email:(r.contact||''),r.sid||'',r.role,r.course||r.dept||'',r.purpose];
-  })].map(row=>row.map(c=>`"${c}"`).join(',')).join('\n');
+  const f=byPeriod(allRecords).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+  const hdr=['#','Date','Time','Name','Email','Student ID','Contact','Role','Course/Dept','Purpose'];
+  const csv=[hdr,...f.map((r,i)=>{const dt=new Date(r.timestamp);return[i+1,dt.toLocaleDateString('en-PH'),dt.toLocaleTimeString('en-PH'),r.name||'',r.email||'',r.sid||'',r.contact||'',r.role,r.course||r.dept||'',r.purpose];})].map(row=>row.map(c=>`"${c}"`).join(',')).join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
   a.download='NEU_Library_'+new Date().toISOString().split('T')[0]+'.csv';
   a.click();
 }
 
-// close modal on backdrop
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show');}));
 document.getElementById('s-id').addEventListener('keydown',e=>{if(e.key==='Enter')submitLog();});
-document.getElementById('wi-name').addEventListener('keydown',e=>{if(e.key==='Enter')submitWalkIn();});
+document.getElementById('wi-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('wi-contact').focus();});
 </script>
 </body>
 </html>
